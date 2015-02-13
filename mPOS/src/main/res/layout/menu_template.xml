@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@drawable/menu_selector"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textViewMenuName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/imageViewMenu"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:text="Name" />
+
+    <TextView
+        android:id="@+id/textViewMenuPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textViewMenuName"
+        android:gravity="center"
+        android:paddingBottom="4dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="4dp"
+        android:text="100"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageViewMenu"
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="4dp"
+        android:background="@drawable/light_blue_gray_shape_radius"
+        android:padding="1dp"
+        android:scaleType="fitXY" />
+
+</RelativeLayout>

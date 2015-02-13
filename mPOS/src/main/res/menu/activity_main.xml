@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/itemSendData"
+        android:icon="@drawable/ic_action_upload"
+        android:showAsAction="always|withText"
+        android:title="@string/send_data">
+        <menu>
+            <item
+                android:id="@+id/itemSendSale"
+                android:title="@string/send_sale_data">
+            </item>
+            <item
+                android:id="@+id/itemSendEndday"
+                android:title="@string/send_endday_data">
+            </item>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/itemHoldBill"
+        android:icon="@drawable/ic_action_copy"
+        android:showAsAction="always|withText"
+        android:title="@string/hold_bill">
+    </item>
+    <item
+        android:id="@+id/itemReport"
+        android:icon="@drawable/ic_action_report"
+        android:showAsAction="always|withText"
+        android:title="@string/report">
+    </item>
+    <item
+        android:id="@+id/itemUtility"
+        android:icon="@drawable/ic_action_phone"
+        android:showAsAction="always|withText"
+        android:title="@string/utility">
+        <menu>
+            <item
+                android:id="@+id/itemReprint"
+                android:title="@string/reprint_receipt"
+                android:titleCondensed="Reprint receipt if print fail at first time."/>
+            <item
+                android:id="@+id/itemVoid"
+                android:title="@string/void_bill"
+                android:titleCondensed="Void receipt if incorrect."/>
+            <item
+                android:id="@+id/itemEditCash"
+                android:title="@string/edit_open_shift"/><item
+                android:id="@+id/itemCloseShift"
+                android:title="@string/close_shift"/>
+            <item
+                android:id="@+id/itemEndday"
+                android:title="@string/endday"/>
+            <item
+                android:id="@+id/itemBackupDb"
+                android:title="@string/backup_db"/>
+            
+        </menu>
+    </item>
+    <item
+        android:id="@+id/itemSwUser"
+        android:icon="@drawable/ic_action_cc_bcc"
+        android:showAsAction="always|withText"
+        android:title="@string/switch_user">
+    </item>
+    <item
+        android:id="@+id/itemLogout"
+        android:icon="@drawable/ic_action_secure"
+        android:showAsAction="always|withText"
+        android:title="@string/logout">
+    </item>
+    <item
+        android:id="@+id/itemSetting"
+        android:icon="@drawable/ic_action_settings"
+        android:showAsAction="collapseActionView"
+        android:title="@string/setting" android:visible="false">
+    </item>
+    <item android:id="@+id/itemMenuCols" android:title="@string/num_menu_columns" android:showAsAction="collapseActionView" android:visible="false">
+        <menu>
+            <item android:id="@+id/item2Cols" android:title="2" />
+            <item android:id="@+id/item3Cols" android:title="3" />
+            <item android:id="@+id/item4Cols" android:title="4" />
+            <item android:id="@+id/item5Cols" android:title="5" />
+        </menu>
+    </item><item android:id="@+id/itemLang" android:title="@string/language" android:showAsAction="collapseActionView"></item><item
+        android:id="@+id/itemUpdate"
+        android:icon="@drawable/ic_action_download"
+        android:title="@string/update_data" android:showAsAction="collapseActionView">
+    </item><item android:id="@+id/itemCheckUpdate" android:title="@string/check_update"></item>
+    
+    
+    
+    
+
+</menu>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/default_margin" >
+
+    <Spinner
+        android:id="@+id/spCommentGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" />
+
+    <ListView
+        android:id="@+id/lvComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnHideKeyboard"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/spCommentGroup" >
+
+    </ListView>
+
+    <EditText
+        android:id="@+id/txtComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:ems="10"
+        android:hint="@string/comment"
+        android:inputType="textMultiLine" >
+
+    </EditText>
+
+    <ImageButton
+        android:id="@+id/btnHideKeyboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtComment"
+        android:layout_alignParentRight="true"
+        android:minWidth="48dip"
+        android:src="@drawable/ic_action_keyboard" />
+
+</RelativeLayout>

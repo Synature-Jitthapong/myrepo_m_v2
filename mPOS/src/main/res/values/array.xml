@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_printer_name">
+        <item>TM-T81</item>
+        <item>@string/tm_t88v</item>
+    </string-array>
+    <string-array name="pref_printer_value">
+        <item>TM-T88V</item>
+        <item>@string/tm_t88v</item>
+    </string-array>
+    <string-array name="baudrates_name">
+        <item>9600</item>
+        <item>19200</item>
+        <item>38400</item>
+        <item>57600</item>
+        <item>115200</item>
+        <item>230400</item>
+        <item>460800</item>
+        <item>500000</item>
+        <item>576000</item>
+        <item>921600</item>
+        <item>1000000</item>
+        <item>1152000</item>
+    </string-array>
+    <string-array name="baudrates_value">
+        <item>BAUD_9600</item>
+        <item>BAUD_19200</item>
+        <item>BAUD_38400</item>
+        <item>BAUD_57600</item>
+        <item>BAUD_115200</item>
+        <item>BAUD_230400</item>
+        <item>BAUD_460800</item>
+        <item>BAUD_500000</item>
+        <item>BAUD_576000</item>
+        <item>BAUD_921600</item>
+        <item>BAUD_1000000</item>
+        <item>BAUD_1152000</item>
+    </string-array>
+    <string-array name="devices_path_name">
+        <item>/dev/ttySAC0</item>
+        <item>/dev/ttySAC1</item>
+        <item>/dev/ttySAC2</item>
+        <item>/dev/ttySAC3</item>
+    </string-array>
+    <string-array name="devices_path_value">
+        <item>/dev/ttySAC0</item>
+        <item>/dev/ttySAC1</item>
+        <item>/dev/ttySAC2</item>
+        <item>/dev/ttySAC3</item>
+    </string-array>
+    <string-array name="connection_time_out_name">
+        <item>10ms.</item>
+        <item>15ms.</item>
+        <item>30ms.</item>
+        <item>45ms.</item>
+        <item>60ms.</item>
+    </string-array>
+    <string-array name="connection_time_out_value">
+        <item>10</item>
+        <item>15</item>
+        <item>30</item>
+        <item>45</item>
+        <item>60</item>
+    </string-array>
+    <string-array name="months_to_keep_sale">
+        <item>@string/one_month</item>
+        <item>@string/two_month</item>
+        <item>@string/three_month</item>
+    </string-array>
+    <string-array name="months_to_keep_sale_value">
+        <item>-30</item>
+        <item>-60</item>
+        <item>-90</item>
+    </string-array>
+    <string-array name="bill_type">
+        <item>@string/receipt</item>
+        <item>@string/finish_waste</item>
+    </string-array>
+</resources>

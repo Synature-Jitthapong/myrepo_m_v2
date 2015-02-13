@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/include1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        layout="@layout/menu_template" />
+
+    <TextView
+        android:id="@+id/tvDeAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_alignRight="@+id/include1"
+        android:layout_alignTop="@+id/include1"
+        android:layout_marginRight="-8dp"
+        android:layout_marginTop="-8dp"
+        android:background="@drawable/badge_text_holo_green_dark"
+        android:gravity="center"
+        android:minWidth="32dp"
+        android:textAppearance="?android:attr/textAppearanceMediumInverse"
+        android:textColor="@android:color/white" />
+
+</RelativeLayout>

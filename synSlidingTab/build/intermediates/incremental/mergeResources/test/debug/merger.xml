@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="debug"><source path="/home/j1tth4/AndroidStudioProjects/myrepo_m/synSlidingTab/build/intermediates/bundles/debug/res"/></dataSet><dataSet config="main"><source path="/home/j1tth4/AndroidStudioProjects/myrepo_m/synSlidingTab/src/androidTest/res"/><source path="/home/j1tth4/AndroidStudioProjects/myrepo_m/synSlidingTab/build/generated/res/rs/test/debug"/><source path="/home/j1tth4/AndroidStudioProjects/myrepo_m/synSlidingTab/build/generated/res/generated/test/debug"/></dataSet><mergedItems/></merger>

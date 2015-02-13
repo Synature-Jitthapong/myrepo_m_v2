@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.synature.mpos.PromotionActivity" >
+    <item
+        android:id="@+id/itemConfirm"
+        android:icon="@drawable/ic_action_accept"
+        android:showAsAction="always|withText"
+        android:title="@string/confirm">
+    </item>
+
+</menu>

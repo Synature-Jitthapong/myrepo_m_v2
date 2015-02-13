@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="@dimen/activity_horizontal_margin" >
+
+    <ImageButton
+        android:id="@+id/btnPrint"
+        style="@style/GrayButtonRightCorner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:minWidth="48dip"
+        android:src="@drawable/ic_action_print" />
+
+    <TextView
+        android:id="@+id/tvAd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvReceiptNo"
+        android:layout_marginTop="4dp"
+        android:layout_toRightOf="@+id/tvNo" />
+
+    <ImageButton
+        android:id="@+id/btnBillDetail"
+        style="@style/GrayButtonLeftCorner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/btnPrint"
+        android:minWidth="48dip"
+        android:src="@drawable/ic_action_receipt_light" />
+
+    <TextView
+        android:id="@+id/tvReceiptNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="4dp"
+        android:layout_toLeftOf="@+id/btnBillDetail"
+        android:layout_toRightOf="@+id/tvNo"
+        android:layout_weight="1"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/tvNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="4dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</RelativeLayout>
