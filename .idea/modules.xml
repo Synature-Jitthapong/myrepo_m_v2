@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/mPOS/mPOS.iml" filepath="$PROJECT_DIR$/mPOS/mPOS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myrepo_m_v2.iml" filepath="$PROJECT_DIR$/myrepo_m_v2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/synSlidingTab/synSlidingTab.iml" filepath="$PROJECT_DIR$/synSlidingTab/synSlidingTab.iml" />
+    </modules>
+  </component>
+</project>
+

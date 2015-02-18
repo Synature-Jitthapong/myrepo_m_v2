@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="WTAndroidJar2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/mPOS/libs/WTAndroidJar2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
