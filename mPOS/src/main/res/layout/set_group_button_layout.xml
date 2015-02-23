@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="68dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/menu_selector"
+        android:gravity="center"
+        android:minWidth="128dip"
+        android:padding="@dimen/default_margin" >
+
+        <TextView
+            android:id="@+id/tvSetGName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvReqAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_alignRight="@+id/content"
+        android:layout_alignTop="@+id/content"
+        android:layout_marginRight="-8dp"
+        android:layout_marginTop="-8dp"
+        android:background="@drawable/badge_text_holo_orange_dark"
+        android:gravity="center"
+        android:minWidth="32dp"
+        android:textAppearance="?android:attr/textAppearanceMediumInverse"
+        android:textColor="@android:color/white" />
+
+</RelativeLayout>

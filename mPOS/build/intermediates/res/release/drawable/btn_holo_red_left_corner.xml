@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+   <item 
+     android:state_pressed="true"
+     android:drawable="@drawable/holo_blue_light_left_corner_shape"></item>
+    <item 
+        android:state_selected="true"
+        android:drawable="@drawable/holo_blue_light_left_corner_shape"></item>
+    <item
+        android:drawable="@drawable/holo_red_dark_left_corner_shape"></item>
+</selector>
+<!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m/mPOS/src/main/res/drawable/btn_holo_red_left_corner.xml -->

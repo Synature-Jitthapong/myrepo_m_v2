@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/itemSetting"
+        android:icon="@drawable/ic_action_settings"
+        android:showAsAction="always|withText"
+        android:title="@string/setting">
+    </item>
+    <item
+        android:id="@+id/itemUpdate"
+        android:icon="@drawable/ic_action_download"
+        android:showAsAction="always|withText"
+        android:title="@string/update_data">
+    </item>
+    
+    <item
+        android:id="@+id/itemReport"
+        android:icon="@drawable/ic_action_report"
+        android:showAsAction="always|withText"
+        android:title="@string/report">
+    </item><item android:id="@+id/itemUtils" android:icon="@drawable/ic_action_phone" android:showAsAction="always|withText" android:title="@string/utility">
+    </item><item android:id="@+id/itemSwLang" android:title="@string/language" android:showAsAction="collapseActionView"></item><item android:id="@+id/itemTeamViewer" android:showAsAction="collapseActionView" android:title="@string/team_viewer"></item><item android:id="@+id/itemCheckUpdate" android:title="@string/check_update" android:showAsAction="collapseActionView"></item><item
+        android:id="@+id/itemAbout"
+        android:showAsAction="collapseActionView"
+        android:title="@string/about">
+    </item>
+    <item
+        android:id="@+id/itemPerformTest"
+        android:showAsAction="collapseActionView"
+        android:title="Performance Test"
+        android:visible="false">
+    </item>
+    <item
+        android:id="@+id/itemExit"
+        android:title="@string/exit">
+    </item>
+    
+    
+    
+    
+
+</menu><!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m/mPOS/src/main/res/menu/activity_login.xml -->

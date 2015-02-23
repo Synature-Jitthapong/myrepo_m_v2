@@ -1,0 +1,229 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreditPayActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:background="@drawable/light_gray_shape_radius" >
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/txtCardNoSeq1"
+                android:layout_alignBottom="@+id/txtCardNoSeq1"
+                android:layout_alignLeft="@+id/tvTotalPrice"
+                android:layout_alignParentLeft="true"
+                android:text="@string/credit_card_no"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/txtCardHolderName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tvTotalPrice"
+                android:layout_below="@+id/spCardType"
+                android:ems="10"
+                android:textSize="@dimen/large_text_size" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/txtCardHolderName"
+                android:layout_alignBottom="@+id/txtCardHolderName"
+                android:layout_alignLeft="@+id/tvTotalPrice"
+                android:layout_alignParentLeft="true"
+                android:text="@string/card_holder_name"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="22sp" />
+
+            <Spinner
+                android:id="@+id/spBank"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tvTotalPrice"
+                android:layout_below="@+id/txtCardHolderName" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/tvTotalPrice"
+                android:layout_alignParentLeft="true"
+                android:layout_alignTop="@+id/tvTotalPrice"
+                android:layout_toLeftOf="@+id/tvTotalPrice"
+                android:gravity="center_vertical"
+                android:text="@string/total_price"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/txtCardPayAmount"
+                android:layout_alignBottom="@+id/txtCardPayAmount"
+                android:layout_alignLeft="@+id/tvTotalPrice"
+                android:layout_alignParentLeft="true"
+                android:text="@string/total_payment"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/spBank"
+                android:layout_alignLeft="@+id/tvTotalPrice"
+                android:layout_alignParentLeft="true"
+                android:layout_alignTop="@+id/spBank"
+                android:gravity="center_vertical|right"
+                android:text="@string/bank"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/spCardType"
+                android:layout_alignLeft="@+id/tvTotalPrice"
+                android:layout_alignParentLeft="true"
+                android:layout_alignTop="@+id/spCardType"
+                android:gravity="center_vertical"
+                android:text="@string/card_type"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/spExpMonth"
+                android:layout_alignTop="@+id/spExpMonth"
+                android:layout_toRightOf="@+id/spExpMonth"
+                android:gravity="center"
+                android:text="/"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <Spinner
+                android:id="@+id/spExpMonth"
+                android:layout_width="92dp"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tvTotalPrice"
+                android:layout_below="@+id/spBank" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textView1"
+                android:layout_alignBottom="@+id/textView1"
+                android:layout_alignLeft="@+id/tvTotalPrice"
+                android:layout_alignParentLeft="true"
+                android:text="@string/expire_date"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/tvTotalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:minWidth="300dp"
+                android:text="0"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="72sp" />
+
+            <EditText
+                android:id="@+id/txtCardNoSeq2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtCardPayAmount"
+                android:layout_toRightOf="@+id/txtCardNoSeq1"
+                android:ems="3"
+                android:inputType="number"
+                android:lines="1"
+                android:maxLength="4"
+                android:textSize="@dimen/large_text_size" />
+
+            <EditText
+                android:id="@+id/txtCardNoSeq3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtCardPayAmount"
+                android:layout_toRightOf="@+id/txtCardNoSeq2"
+                android:ems="3"
+                android:inputType="number"
+                android:lines="1"
+                android:maxLength="4"
+                android:textSize="@dimen/large_text_size" />
+
+            <EditText
+                android:id="@+id/txtCardNoSeq4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtCardPayAmount"
+                android:layout_toRightOf="@+id/txtCardNoSeq3"
+                android:ems="3"
+                android:inputType="number"
+                android:lines="1"
+                android:maxLength="4"
+                android:textSize="@dimen/large_text_size" />
+
+            <Spinner
+                android:id="@+id/spExpYear"
+                android:layout_width="128dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spBank"
+                android:layout_toRightOf="@+id/textView1" />
+
+            <EditText
+                android:id="@+id/txtCardPayAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tvTotalPrice"
+                android:layout_below="@+id/tvTotalPrice"
+                android:ems="7"
+                android:gravity="center_vertical"
+                android:inputType="numberSigned|numberDecimal"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/large_text_size"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spCardType"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tvTotalPrice"
+                android:layout_below="@+id/txtCardNoSeq2" />
+
+            <EditText
+                android:id="@+id/txtCardNoSeq1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tvTotalPrice"
+                android:layout_below="@+id/txtCardPayAmount"
+                android:ems="3"
+                android:inputType="number"
+                android:lines="1"
+                android:maxLength="4"
+                android:textSize="@dimen/large_text_size" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</ScrollView><!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m/mPOS/src/main/res/layout/activity_credit_pay.xml -->

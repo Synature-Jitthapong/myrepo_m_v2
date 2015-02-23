@@ -1,0 +1,32 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 'Google Inc.:Google APIs:21'
+    buildToolsVersion "21.1.2"
+
+    defaultConfig {
+        applicationId "com.synature.mpos"
+        minSdkVersion 14
+        targetSdkVersion 21
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile project(':synSlidingTab')
+    compile 'com.google.code.gson:gson:2.2.4'
+    compile files('libs/WTAndroidJar2.jar')
+    compile files('libs/ePOS-Print.jar')
+    compile files('libs/ksoap2-android-assembly-3.3.0-jar-with-dependencies.jar')
+    compile files('libs/pinchzoom.jar')
+}

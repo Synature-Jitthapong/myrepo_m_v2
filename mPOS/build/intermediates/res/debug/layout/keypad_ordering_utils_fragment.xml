@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/orderingKeypadContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/editText1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/b1"
+                style="@style/GrayButtonLeftCorner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="48dp"
+                android:text="1" />
+
+            <Button
+                android:id="@+id/b2"
+                style="@style/GrayButtonNoRadius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="48dp"
+                android:text="2" />
+
+            <Button
+                android:id="@+id/b3"
+                style="@style/GrayButtonNoRadius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="48dp"
+                android:text="3" />
+
+            <Button
+                android:id="@+id/b4"
+                style="@style/GrayButtonNoRadius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="48dp"
+                android:text="4" />
+
+            <Button
+                android:id="@+id/b5"
+                style="@style/GrayButtonNoRadius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="48dp"
+                android:text="5" />
+
+            <Button
+                android:id="@+id/b6"
+                style="@style/GrayButtonNoRadius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="48dp"
+                android:text="6" />
+
+            <Button
+                android:id="@+id/b7"
+                style="@style/GrayButtonNoRadius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="48dp"
+                android:text="7" />
+
+            <Button
+                android:id="@+id/b8"
+                style="@style/GrayButtonNoRadius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="48dp"
+                android:text="8" />
+
+            <Button
+                android:id="@+id/b9"
+                style="@style/GrayButtonNoRadius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="48dp"
+                android:text="9" />
+
+            <Button
+                android:id="@+id/b0"
+                style="@style/GrayButtonNoRadius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="48dp"
+                android:text="0" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/horizontalScrollView1"
+        android:layout_alignParentLeft="true"
+        android:clickable="false"
+        android:editable="false"
+        android:ems="5"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textAppearance="?android:attr/textAppearanceLargeInverse">
+    </EditText>
+
+    <Button
+        android:id="@+id/bC"
+        style="@style/GrayButtonRightCorner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/horizontalScrollView1"
+        android:minWidth="48dp"
+        android:text="c" />
+
+</RelativeLayout><!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m/mPOS/src/main/res/layout/keypad_ordering_utils_fragment.xml -->

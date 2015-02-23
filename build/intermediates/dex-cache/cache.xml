@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/j1tth4/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.2.4/a60a5e993c98c864010053cb901b7eab25306568/gson-2.2.4.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="/home/j1tth4/Android studioProjects/myrepo_m/mPOS/build/intermediates/pre-dexed/release/gson-2.2.4-5496acf40f374cc39e323ea837fd15b2acb1a060.jar" />
+    </item>
+    <item
+        jar="/home/j1tth4/Android studioProjects/myrepo_m/mPOS/build/intermediates/exploded-aar/myrepo_m/synSlidingTab/unspecified/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="c0ceee0e6d9bd24bd12496713cb652e028ecda6f">
+        <dex dex="/home/j1tth4/Android studioProjects/myrepo_m/mPOS/build/intermediates/pre-dexed/release/classes-794c50403cad2d412493ca873b9c9882283a8b00.jar" />
+    </item>
+    <item
+        jar="/home/j1tth4/Android/Sdk/extras/android/m2repository/com/android/support/support-v4/18.0.0/support-v4-18.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="/home/j1tth4/Android studioProjects/myrepo_m/mPOS/build/intermediates/pre-dexed/release/support-v4-18.0.0-fb831ac54f6c962d8ab33b150e0614c800583d88.jar" />
+    </item>
+    <item
+        jar="/home/j1tth4/Android studioProjects/myrepo_m/mPOS/libs/ePOS-Print.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ab2b4caa13eb976f1acf8abb3e11f8afa04c25a7">
+        <dex dex="/home/j1tth4/Android studioProjects/myrepo_m/mPOS/build/intermediates/pre-dexed/release/ePOS-Print-2543766a0aa534e4f2286e145c42044715c259d0.jar" />
+    </item>
+    <item
+        jar="/home/j1tth4/Android studioProjects/myrepo_m/mPOS/libs/pinchzoom.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a4def992b1f41525748db059dfdd21322cc3157e">
+        <dex dex="/home/j1tth4/Android studioProjects/myrepo_m/mPOS/build/intermediates/pre-dexed/release/pinchzoom-14c20439961a9a7a650ff317b205abd4341b1231.jar" />
+    </item>
+    <item
+        jar="/home/j1tth4/Android studioProjects/myrepo_m/mPOS/libs/ksoap2-android-assembly-3.3.0-jar-with-dependencies.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="62681b8212ca52278feafec31775fd0cb096d99a">
+        <dex dex="/home/j1tth4/Android studioProjects/myrepo_m/mPOS/build/intermediates/pre-dexed/release/ksoap2-android-assembly-3.3.0-jar-with-dependencies-e98be9ad40a00bb25a110a4fc4fc4fd4c37ba3a8.jar" />
+    </item>
+    <item
+        jar="/home/j1tth4/Android studioProjects/myrepo_m/mPOS/libs/WTAndroidJar2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="20c83b3ce9d96bf7e2fb2793357414837d989cc9">
+        <dex dex="/home/j1tth4/Android studioProjects/myrepo_m/mPOS/build/intermediates/pre-dexed/release/WTAndroidJar2-e1060ac524ed4f54d203bdbc7073bab9dbd21524.jar" />
+    </item>
+
+</items>

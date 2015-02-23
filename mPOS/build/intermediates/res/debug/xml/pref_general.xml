@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/general_setting" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="show_menu_image"
+            android:title="@string/show_menu_image" />
+        <CheckBoxPreference android:key="enable_backup" android:title="@string/backup_db" android:defaultValue="true" android:summary="@string/auto_backup_database"/>
+        <ListPreference android:summary="@string/max_months_to_keep_sale" android:title="@string/keep_sale_data" android:key="months_keep_sale" android:entryValues="@array/months_to_keep_sale_value" android:entries="@array/months_to_keep_sale" android:defaultValue="-60"/>
+        
+        
+    </PreferenceCategory>
+
+</PreferenceScreen><!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m/mPOS/src/main/res/xml/pref_general.xml -->

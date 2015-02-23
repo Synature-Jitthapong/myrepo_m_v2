@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+   <item 
+     android:state_pressed="true"
+     android:drawable="@drawable/holo_green_shape"></item>
+    <item 
+        android:state_selected="true"
+        android:drawable="@drawable/holo_green_shape"></item>
+    <item
+        android:drawable="@drawable/holo_orange_dark_shape"></item>
+</selector>

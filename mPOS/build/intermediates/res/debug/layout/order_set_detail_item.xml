@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:divider="?android:dividerVertical"
+    android:dividerPadding="8dp"
+    android:gravity="center_vertical"
+    android:minHeight="?android:listPreferredItemHeight"
+    android:orientation="horizontal"
+    android:padding="@dimen/default_margin" >
+
+    <Button
+        android:id="@+id/btnSetPlus"
+        style="@style/GrayButtonRightCorner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:minWidth="48dp"
+        android:text="@string/plus" />
+
+    <include
+        android:id="@+id/include1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/btnSetMinus"
+        android:layout_weight="1"
+        layout="@layout/order_set_item" />
+
+    <TextView
+        android:id="@+id/tvSetQty"
+        style="@style/TextQty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnSetPlus"
+        android:layout_alignBottom="@+id/btnSetPlus"
+        android:layout_toLeftOf="@+id/btnSetPlus"
+        android:text="1"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/btnSetMinus"
+        style="@style/GrayButtonLeftCorner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvSetQty"
+        android:layout_alignBottom="@+id/tvSetQty"
+        android:layout_toLeftOf="@+id/tvSetQty"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:minWidth="48dp"
+        android:text="@string/minus" />
+
+</RelativeLayout>
+<!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m/mPOS/src/main/res/layout/order_set_detail_item.xml -->

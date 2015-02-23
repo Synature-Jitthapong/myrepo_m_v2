@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/blue_grey"
+        android:gravity="center"
+        android:padding="4dp"
+        android:textAppearance="?android:attr/textAppearanceLargeInverse" />
+
+    <TextView
+        android:id="@+id/tvTotalPrice"
+        style="@style/TextPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tvTitle"
+        android:background="@color/blue_grey"
+        android:gravity="right"
+        android:text="0.00"
+        android:textAppearance="?android:attr/textAppearanceLargeInverse"
+        android:textColor="@android:color/white"
+        android:textSize="72sp" />
+
+    <EditText
+        android:id="@+id/txtRemark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tvTotalPrice"
+        android:layout_margin="@dimen/default_margin"
+        android:background="@drawable/light_gray_shape_radius"
+        android:ems="10"
+        android:gravity="top|left"
+        android:hint="@string/remark"
+        android:inputType="textMultiLine"
+        android:minLines="2"
+        android:padding="@dimen/default_margin" >
+
+        <requestFocus />
+    </EditText>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/txtRemark"
+        android:padding="@dimen/default_margin" >
+
+        <Button
+            android:id="@+id/btnCancel"
+            style="@style/GrayButtonLeftCorner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="72dp"
+            android:minWidth="256dp"
+            android:text="@android:string/cancel"
+            android:textSize="@dimen/large_text_size" />
+
+        <Button
+            android:id="@+id/btnConfirm"
+            style="@style/BlueButtonRightCorner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="72dp"
+            android:minWidth="256dp"
+            android:text="confirm"
+            android:textSize="@dimen/large_text_size" />
+
+    </LinearLayout>
+
+</RelativeLayout>

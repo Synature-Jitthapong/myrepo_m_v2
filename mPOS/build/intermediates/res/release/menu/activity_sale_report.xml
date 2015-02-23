@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/itemDateCondition"
+        android:actionLayout="@layout/date_condition"
+        android:showAsAction="ifRoom">
+    </item>
+
+</menu><!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m/mPOS/src/main/res/menu/activity_sale_report.xml -->

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.synature.mpos"
+    android:installLocation="auto"
+    android:versionCode="27"
+    android:versionName="1.2.13" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="21" />
+
+    <supports-screens
+        android:requiresSmallestWidthDp="1024"
+        android:smallScreens="false" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.flash"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+
+    <application
+        android:name=".MPOSApplication"
+        android:allowBackup="true"
+        android:configChanges="locale"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" >
+        </activity>
+        <activity
+            android:name=".DiscountActivity"
+            android:label="@string/discount"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.synature.mpos.MainActivity" />
+        </activity>
+        <activity
+            android:name=".SaleReportActivity"
+            android:label="@string/sale_report"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.synature.mpos.MainActivity" />
+        </activity>
+        <activity
+            android:name=".VoidBillActivity"
+            android:label="@string/void_bill"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.synature.mpos.MainActivity" />
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/setting"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+        </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/about"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".PaymentActivity"
+            android:label="@string/payment"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:theme="@style/ActivityDialogTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" >
+        </activity>
+        <activity
+            android:name=".CreditPayActivity"
+            android:label="@string/credit_pay"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".SendSaleActivity"
+            android:label="@string/send_sale_data"
+            android:screenOrientation="landscape"
+            android:theme="@style/ActivityDialogTheme" >
+        </activity>
+        <activity
+            android:name=".ReprintActivity"
+            android:label="@string/reprint_receipt"
+            android:theme="@style/ActivityDialogTheme" >
+        </activity>
+        <activity
+            android:name=".ProductSetActivity"
+            android:label="@string/set_menu"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".FoodCourtCardPayActivity"
+            android:label="@string/payment"
+            android:screenOrientation="landscape"
+            android:theme="@style/ActivityDialogTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan" >
+        </activity>
+        <activity
+            android:name=".SendEnddayActivity"
+            android:label="@string/send_endday_data"
+            android:screenOrientation="landscape"
+            android:theme="@style/ActivityDialogTheme" >
+        </activity>
+        <activity
+            android:name=".PromotionActivity"
+            android:label="@string/promotion_short"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+        </activity>
+        <activity
+            android:name=".CheckUpdateActivity"
+            android:label="@string/check_update"
+            android:screenOrientation="landscape"
+            android:theme="@style/ActivityDialogTheme"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+        </activity>
+        <receiver
+            android:name=".BootUpReceiver"
+            android:enabled="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".InstallerReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".DownloadService" >
+        </service>
+        <service android:name=".RemoteStackTraceService" >
+        </service>
+        <service android:name=".SaleSenderService" >
+        </service>
+        <service android:name=".EnddaySenderService" >
+        </service>
+    </application>
+
+</manifest>

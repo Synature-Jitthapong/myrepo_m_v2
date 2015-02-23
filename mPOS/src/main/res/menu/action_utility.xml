@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/itemSendData"
+        android:title="@string/send_sale_data">
+        <menu>
+            <item
+                android:id="@+id/itemSendSale"
+                android:title="@string/send_sale_data"/>
+            <item
+                android:id="@+id/itemSendEndday"
+                android:title="@string/send_endday_data"/>
+        </menu>
+    </item>
+    <item android:id="@+id/itemBackupAndRestore" android:title="@string/backup_restore">
+        <menu>
+            <item android:id="@+id/itemBackup" android:title="@string/backup_db">
+            </item>
+            <item android:id="@+id/itemRestore" android:title="@string/restore_db">
+            </item>
+        </menu>
+    </item><item
+        android:id="@+id/itemResetEndday"
+        android:title="@string/reset_endday">
+    </item>
+    <item android:id="@+id/itemResetSendStatus" android:title="@string/reset_send_status" android:visible="false"></item><item
+        android:id="@+id/itemClearSale"
+        android:title="@string/clear_sale_data">
+    </item>
+    
+    
+
+</menu>

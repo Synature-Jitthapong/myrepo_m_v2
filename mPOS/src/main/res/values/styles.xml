@@ -1,0 +1,137 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- AppTheme -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light">
+        <!-- <item name="android:windowBackground">@color/blue_gray_light</item>-->
+        <!-- <item name="android:colorBackground">@color/blue_gray_light</item>-->
+        <!-- <item name="android:actionBarStyle">@style/MyActionBar</item> -->
+        <item name="android:buttonStyle">@style/GrayButton</item>
+        <item name="android:imageButtonStyle">@style/GrayButton</item>
+        <!-- <item name="android:editTextStyle">@style/EditTextStyle</item> -->
+    </style>
+    <!-- ActivityDialogTheme -->
+    <style name="ActivityDialogTheme" parent="android:Theme.Holo.Light.Dialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowSoftInputMode">stateAlwaysHidden</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:buttonStyle">@style/GrayButton</item>
+        <item name="android:imageButtonStyle">@style/GrayButton</item>
+        <!-- <item name="android:editTextStyle">@style/EditTextStyle</item> -->
+    </style>
+    <!-- ActionBar styles -->
+    <style name="MyActionBar"
+           parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
+        <item name="android:background">@android:color/holo_orange_dark</item>
+    </style>
+    <style name="EditTextQty" parent="@android:attr/editTextStyle">
+        <item name="android:textAppearance">@android:style/TextAppearance.Holo.Large</item>
+        <item name="android:maxEms">8</item>
+        <item name="android:minEms">2</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!-- Text Style -->
+    <style name="TextQty" parent="@android:style/TextAppearance.Holo.Large">
+        <item name="android:gravity">center</item>
+        <item name="android:minWidth">48dip</item>
+        <item name="android:minHeight">48dip</item>
+        <item name="android:padding">@dimen/default_margin</item>
+    </style>
+    <style name="TextSummary" parent="@android:style/TextAppearance.Holo">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:gravity">right|center_vertical</item>
+        <item name="android:padding">@dimen/default_margin</item>
+    </style>
+    <style name="TextPrice" parent="@android:style/TextAppearance.Holo.Large">
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:padding">@dimen/default_margin</item>
+    </style>
+    <style name="LabelText" parent="@android:style/TextAppearance.Holo">
+        <item name="android:gravity">right</item>
+        <item name="android:width">200dp</item>
+        <item name="android:layout_marginRight">4dp</item>
+    </style>
+ 	<style name="BodyText" parent="@android:style/TextAppearance.Holo.Small">
+		<item name="android:gravity">right|center_vertical</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:paddingLeft">2dp</item>
+		<item name="android:paddingTop">@dimen/default_margin</item>
+		<item name="android:paddingRight">2dp</item>
+		<item name="android:paddingBottom">@dimen/default_margin</item>
+    </style>
+    <style name="HeaderText" parent="@android:style/TextAppearance.Holo">
+		<item name="android:textAllCaps">true</item>
+		<item name="android:padding">@dimen/default_margin</item>
+    </style>
+    <!-- Row Style -->
+    <style name="HeaderRow">
+        <item name="android:divider">@android:drawable/divider_horizontal_bright</item>
+        <item name="android:showDividers">middle|beginning|end</item>
+    </style>
+    <!-- Button Style -->
+    <style name="GrayButtonRightCorner" parent="BaseButton">
+        <item name="android:background">@drawable/btn_holo_gray_right_corner</item>
+        <item name="android:minHeight">48dip</item>
+        <item name="android:minWidth">48dip</item>
+    </style>
+    <style name="GrayButtonLeftCorner" parent="BaseButton">
+        <item name="android:background">@drawable/btn_holo_gray_left_corner</item>
+        <item name="android:minHeight">48dip</item>
+        <item name="android:minWidth">48dip</item>
+    </style>
+    <style name="KeyPadButton" parnet="BaseButton.Light">
+        <item name="android:minWidth">72dp</item>
+        <item name="android:minHeight">72dp</item>
+    </style>
+    <style name="RedButtonRightCorner" parent="BaseButton.Light">
+        <item name="android:background">@drawable/btn_holo_red_right_corner</item>
+    </style>
+    <style name="RedButtonLeftCorner" parent="BaseButton.Light">
+        <item name="android:background">@drawable/btn_holo_red_left_corner</item>
+    </style>
+    <style name="RedButton" parent="BaseButton.Light">
+        <item name="android:background">@drawable/btn_holo_red</item>
+    </style>
+    <style name="GreenButtonRightCorner" parent="BaseButton.Light">
+        <item name="android:background">@drawable/btn_holo_green_right_corner</item>
+    </style>
+    <style name="GreenButtonLeftCorner" parent="BaseButton.Light">
+        <item name="android:background">@drawable/btn_holo_green_left_corner</item>
+    </style>
+    <style name="GreenButtonNoRadius" parent="BaseButton.Light">
+        <item name="android:background">@drawable/btn_holo_green_no_radius</item>
+    </style>
+    <style name="GreenButton" parent="BaseButton.Light">
+        <item name="android:background">@drawable/btn_holo_green</item>
+    </style>
+    <style name="BlueButtonRightCorner" parent="BaseButton.Light">
+        <item name="android:background">@drawable/btn_holo_blue_right_corner</item>
+    </style>
+    <style name="BlueButtonLeftCorner" parent="BaseButton.Light">
+        <item name="android:background">@drawable/btn_holo_blue_left_corner</item>
+    </style>
+    <style name="BlueButton" parent="BaseButton.Light">
+        <item name="android:background">@drawable/btn_holo_blue</item>
+    </style>
+    <style name="BlueGrayButton" parent="BaseButton">
+        <item name="android:background">@drawable/btn_blue_gray_light</item>
+    </style>
+    <style name="GrayButtonOval" parent="BaseButton">
+        <item name="android:background">@drawable/btn_holo_gray_oval</item>
+        <item name="android:minHeight">48dip</item>
+        <item name="android:minWidth">48dip</item>
+    </style>
+    <style name="GrayButtonNoRadius" parent="BaseButton">
+        <item name="android:background">@drawable/btn_holo_gray_no_radius</item>
+    </style>
+    <style name="GrayButton" parent="BaseButton">
+        <item name="android:background">@drawable/btn_holo_gray</item>
+    </style>
+    <style name="BaseButton.Light" parent="BaseButton">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="BaseButton" parent="@android:style/Widget.Holo.Light.Button">
+        <item name="android:textAllCaps">true</item>
+    </style>
+</resources>

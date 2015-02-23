@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/itemSession"
+        android:actionLayout="@layout/session_spinner"
+        android:showAsAction="always" android:visible="false">
+    </item>
+    
+    <item
+        android:id="@+id/itemCreateReport"
+        android:icon="@drawable/ic_action_paste"
+        android:showAsAction="always|withText"
+        android:title="@string/display">
+    </item>
+    <item
+        android:id="@+id/itemPrint"
+        android:icon="@drawable/ic_action_print"
+        android:showAsAction="always|withText"
+        android:title="@string/print">
+    </item>
+
+</menu><!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m/mPOS/src/main/res/menu/fragment_sale_report.xml -->

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/printer_setting" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="printer_internal"
+            android:summary="@string/internal_printer_wintec"
+            android:title="@string/internal_printer"
+            android:disableDependentsState="true" />
+
+        <ListPreference
+            android:defaultValue="/dev/ttySAC1"
+            android:entries="@array/devices_path_name"
+            android:entryValues="@array/devices_path_value"
+            android:key="printer_wintec_dev_path"
+            android:title="@string/wintec_dev_path"/>
+        <ListPreference
+            android:defaultValue="BAUD_38400"
+            android:entries="@array/baudrates_name"
+            android:entryValues="@array/baudrates_value"
+            android:key="printer_wintec_baud_rate"
+            android:title="@string/baud_rate"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/epson_printer" >
+        <EditTextPreference
+            android:dependency="printer_internal"
+            android:key="printer_ip"
+            android:selectAllOnFocus="true"
+            android:title="@string/printer_ip" />
+
+        <ListPreference
+            android:defaultValue="@string/tm_t88v"
+            android:entries="@array/pref_printer_name"
+            android:entryValues="@array/pref_printer_value"
+            android:key="printer_list"
+            android:title="@string/printer_name" android:dependency="printer_internal"/>
+    </PreferenceCategory>
+
+    <Preference
+        android:layout="@layout/print_test_layout"
+        android:title="@string/print_test" />
+
+</PreferenceScreen><!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m/mPOS/src/main/res/xml/pref_printer.xml -->

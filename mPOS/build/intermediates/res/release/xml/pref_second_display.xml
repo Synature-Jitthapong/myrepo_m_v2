@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:summary="@string/second_display_setting_summary"
+        android:title="@string/second_display_setting" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="enable_second_display"
+            android:title="@string/enable_second_display" />
+
+        <EditTextPreference
+            android:dependency="enable_second_display"
+            android:key="second_display_ip"
+            android:title="@string/ip_address" />
+        <EditTextPreference
+            android:defaultValue="@string/default_second_display_port"
+            android:dependency="enable_second_display"
+            android:key="second_display_port"
+            android:title="@string/port" />
+    </PreferenceCategory>
+
+</PreferenceScreen><!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m/mPOS/src/main/res/xml/pref_second_display.xml -->

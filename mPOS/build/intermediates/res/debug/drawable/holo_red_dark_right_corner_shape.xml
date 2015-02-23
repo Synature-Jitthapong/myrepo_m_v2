@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    <solid 
+        android:color="@android:color/holo_red_dark"/>
+    <corners 
+        android:topRightRadius="@dimen/default_radius"
+        android:bottomRightRadius="@dimen/default_radius"/>
+    <stroke 
+        android:width="2dp"
+        android:color="@android:color/transparent"/>
+	<padding
+	    android:left="@dimen/default_margin"
+	    android:top="@dimen/default_margin"
+	    android:right="@dimen/default_margin"
+	    android:bottom="@dimen/default_margin"></padding>
+</shape>
+<!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m/mPOS/src/main/res/drawable/holo_red_dark_right_corner_shape.xml -->

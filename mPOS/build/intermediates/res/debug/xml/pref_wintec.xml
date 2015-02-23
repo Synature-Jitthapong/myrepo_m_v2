@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/wintec_magnetic_reader_settings">
+        <ListPreference
+            android:defaultValue="/dev/ttySAC3"
+            android:entries="@array/devices_path_name"
+            android:entryValues="@array/devices_path_value"
+            android:key="msr_wintec_dev_path"
+            android:title="@string/wintec_dev_path"/>
+        <ListPreference
+            android:defaultValue="BAUD_9600"
+            android:entries="@array/baudrates_name"
+            android:entryValues="@array/baudrates_value"
+            android:key="msr_wintec_baud_rate"
+            android:title="@string/baud_rate"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/wintec_cash_drawer_settings">
+        <ListPreference
+            android:defaultValue="/dev/ttySAC1"
+            android:entries="@array/devices_path_name"
+            android:entryValues="@array/devices_path_value"
+            android:key="drw_wintec_dev_path"
+            android:title="@string/wintec_dev_path"/>
+        <ListPreference
+            android:defaultValue="BAUD_38400"
+            android:entries="@array/baudrates_name"
+            android:entryValues="@array/baudrates_value"
+            android:key="drw_wintec_baud_rate"
+            android:title="@string/baud_rate" android:widgetLayout="@layout/drw_test_layout"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/wintec_customer_display_settings" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="enable_dsp"
+            android:title="@string/enable_wintec_customer_display" />
+
+        <ListPreference
+            android:defaultValue="/dev/ttySAC3"
+            android:dependency="enable_dsp"
+            android:entries="@array/devices_path_name"
+            android:entryValues="@array/devices_path_value"
+            android:key="dsp_wintec_dev_path"
+            android:title="@string/wintec_dev_path"/>
+        <ListPreference
+            android:defaultValue="BAUD_9600"
+            android:dependency="enable_dsp"
+            android:entries="@array/baudrates_name"
+            android:entryValues="@array/baudrates_value"
+            android:key="dsp_wintec_baud_rate"
+            android:title="@string/baud_rate"/>
+
+        <EditTextPreference
+            android:key="dsp_wintec_line1"
+            android:title="@string/text_line1" android:defaultValue="Welcome to"/>
+        <EditTextPreference
+            android:key="dsp_wintec_line2"
+            android:title="@string/text_line2" android:defaultValue="mPOS" android:widgetLayout="@layout/dsp_test_layout"/>
+    </PreferenceCategory>
+
+</PreferenceScreen><!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m/mPOS/src/main/res/xml/pref_wintec.xml -->

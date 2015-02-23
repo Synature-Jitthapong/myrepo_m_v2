@@ -1,0 +1,450 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Risky Project Location:
+-----------------------
+The tools *should* handle project locations in any directory. However,
+due to bugs, placing projects in directories containing spaces in the
+path, or characters like ", ' and &, have had issues. We're working to
+eliminate these bugs, but to save yourself headaches you may want to
+move your project to a location where this is not a problem.
+/home/j1tth4/Android studioProjects/myrepo_m
+                    -                       
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+From MPOS:
+* .gitignore
+* build/
+* build/generated/
+* build/generated/source/
+* build/generated/source/buildConfig/
+* build/generated/source/buildConfig/debug/
+* build/generated/source/buildConfig/debug/com/
+* build/generated/source/buildConfig/debug/com/synature/
+* build/generated/source/buildConfig/debug/com/synature/mpos/
+* build/generated/source/buildConfig/debug/com/synature/mpos/BuildConfig.java
+* build/generated/source/r/
+* build/generated/source/r/debug/
+* build/generated/source/r/debug/com/
+* build/generated/source/r/debug/com/synature/
+* build/generated/source/r/debug/com/synature/mpos/
+* build/generated/source/r/debug/com/synature/mpos/R.java
+* build/generated/source/r/debug/com/synature/synaturecorelibrary/
+* build/generated/source/r/debug/com/synature/synaturecorelibrary/R.java
+* build/intermediates/
+* build/intermediates/exploded-aar/
+* build/intermediates/exploded-aar/git/
+* build/intermediates/exploded-aar/git/SynSlidingTab/
+* build/intermediates/exploded-aar/git/SynSlidingTab/unspecified/
+* build/intermediates/exploded-aar/git/SynSlidingTab/unspecified/AndroidManifest.xml
+* build/intermediates/exploded-aar/git/SynSlidingTab/unspecified/classes.jar
+* build/intermediates/exploded-aar/git/SynSlidingTab/unspecified/libs/
+* build/intermediates/exploded-aar/git/SynSlidingTab/unspecified/libs/android-support-v4.jar
+* build/intermediates/exploded-aar/git/SynatureCoreLibrary/
+* build/intermediates/exploded-aar/git/SynatureCoreLibrary/unspecified/
+* build/intermediates/exploded-aar/git/SynatureCoreLibrary/unspecified/AndroidManifest.xml
+* build/intermediates/exploded-aar/git/SynatureCoreLibrary/unspecified/R.txt
+* build/intermediates/exploded-aar/git/SynatureCoreLibrary/unspecified/classes.jar
+* build/intermediates/exploded-aar/git/SynatureCoreLibrary/unspecified/libs/
+* build/intermediates/exploded-aar/git/SynatureCoreLibrary/unspecified/libs/android-support-v4.jar
+* build/intermediates/exploded-aar/git/SynatureCoreLibrary/unspecified/libs/gson-2.2.4.jar
+* build/intermediates/exploded-aar/git/SynatureCoreLibrary/unspecified/libs/ksoap2-android-assembly-3.3.0-jar-with-dependencies.jar
+* build/intermediates/exploded-aar/git/SynatureCoreLibrary/unspecified/res/
+* build/intermediates/exploded-aar/git/SynatureCoreLibrary/unspecified/res/drawable-hdpi-v4/
+* build/intermediates/exploded-aar/git/SynatureCoreLibrary/unspecified/res/drawable-hdpi-v4/ic_launcher.png
+* build/intermediates/exploded-aar/git/SynatureCoreLibrary/unspecified/res/drawable-mdpi-v4/
+* build/intermediates/exploded-aar/git/SynatureCoreLibrary/unspecified/res/drawable-mdpi-v4/ic_launcher.png
+* build/intermediates/exploded-aar/git/SynatureCoreLibrary/unspecified/res/drawable-xhdpi-v4/
+* build/intermediates/exploded-aar/git/SynatureCoreLibrary/unspecified/res/drawable-xhdpi-v4/ic_launcher.png
+* build/intermediates/exploded-aar/git/SynatureCoreLibrary/unspecified/res/values-v11/
+* build/intermediates/exploded-aar/git/SynatureCoreLibrary/unspecified/res/values-v11/values.xml
+* build/intermediates/exploded-aar/git/SynatureCoreLibrary/unspecified/res/values-v14/
+* build/intermediates/exploded-aar/git/SynatureCoreLibrary/unspecified/res/values-v14/values.xml
+* build/intermediates/exploded-aar/git/SynatureCoreLibrary/unspecified/res/values/
+* build/intermediates/exploded-aar/git/SynatureCoreLibrary/unspecified/res/values/values.xml
+* build/intermediates/incremental/
+* build/intermediates/incremental/aidl/
+* build/intermediates/incremental/aidl/debug/
+* build/intermediates/incremental/aidl/debug/dependency.store
+* build/intermediates/incremental/mergeAssets/
+* build/intermediates/incremental/mergeAssets/debug/
+* build/intermediates/incremental/mergeAssets/debug/merger.xml
+* build/intermediates/incremental/mergeResources/
+* build/intermediates/incremental/mergeResources/debug/
+* build/intermediates/incremental/mergeResources/debug/merger.xml
+* build/intermediates/libs/
+* build/intermediates/libs/myrepo_m-debug.ap_
+* build/intermediates/manifests/
+* build/intermediates/manifests/debug/
+* build/intermediates/manifests/debug/AndroidManifest.xml
+* build/intermediates/res/
+* build/intermediates/res/debug/
+* build/intermediates/res/debug/drawable-hdpi-v4/
+* build/intermediates/res/debug/drawable-hdpi-v4/default_image.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_about.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_accept.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_cancel.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_cc_bcc.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_cloud.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_copy.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_discard.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_download.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_go_to_today.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_import_export.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_labels.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_not_secure.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_paste.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_person.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_phone.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_refresh.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_remove.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_save.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_secure.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_settings.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_time.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_upload.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_action_warning.png
+* build/intermediates/res/debug/drawable-hdpi-v4/ic_launcher.png
+* build/intermediates/res/debug/drawable-mdpi-v4/
+* build/intermediates/res/debug/drawable-mdpi-v4/default_image.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_about.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_accept.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_cancel.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_cc_bcc.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_cloud.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_copy.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_discard.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_download.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_go_to_today.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_import_export.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_labels.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_not_secure.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_paste.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_person.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_phone.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_refresh.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_remove.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_save.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_secure.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_settings.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_time.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_upload.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_action_warning.png
+* build/intermediates/res/debug/drawable-mdpi-v4/ic_launcher.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/
+* build/intermediates/res/debug/drawable-xhdpi-v4/actionbar_bottom.9.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/default_image.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_about.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_accept.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_cancel.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_cc_bcc.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_cloud.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_copy.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_discard.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_download.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_go_to_today.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_import_export.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_labels.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_not_secure.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_paste.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_person.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_phone.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_refresh.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_remove.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_save.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_secure.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_settings.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_time.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_upload.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_action_warning.png
+* build/intermediates/res/debug/drawable-xhdpi-v4/ic_launcher.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_about.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_accept.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_cancel.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_cc_bcc.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_cloud.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_copy.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_discard.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_download.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_go_to_today.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_import_export.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_labels.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_not_secure.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_paste.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_person.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_phone.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_refresh.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_remove.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_save.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_secure.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_settings.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_time.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_upload.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_action_warning.png
+* build/intermediates/res/debug/drawable-xxhdpi-v4/ic_launcher.png
+* build/intermediates/res/debug/drawable-xxxhdpi-v4/
+* build/intermediates/res/debug/drawable-xxxhdpi-v4/ic_launcher.png
+* build/intermediates/res/debug/drawable/
+* build/intermediates/res/debug/drawable/badge_text_holo_green_dark.xml
+* build/intermediates/res/debug/drawable/badge_text_holo_orange_dark.xml
+* build/intermediates/res/debug/drawable/blue_green_light_shape.xml
+* build/intermediates/res/debug/drawable/btn_blue_gray_light.xml
+* build/intermediates/res/debug/drawable/btn_holo_blue.xml
+* build/intermediates/res/debug/drawable/btn_holo_gray.xml
+* build/intermediates/res/debug/drawable/btn_holo_orange.xml
+* build/intermediates/res/debug/drawable/btn_holo_red.xml
+* build/intermediates/res/debug/drawable/btn_smooth_green.xml
+* build/intermediates/res/debug/drawable/company_logo.png
+* build/intermediates/res/debug/drawable/holo_blue_dark_shape.xml
+* build/intermediates/res/debug/drawable/holo_blue_light_shape.xml
+* build/intermediates/res/debug/drawable/holo_gray_light_shape.xml
+* build/intermediates/res/debug/drawable/holo_orange_dark_shape.xml
+* build/intermediates/res/debug/drawable/holo_red_dark_shape.xml
+* build/intermediates/res/debug/drawable/list_selector.xml
+* build/intermediates/res/debug/drawable/menu_default.xml
+* build/intermediates/res/debug/drawable/menu_pressed.xml
+* build/intermediates/res/debug/drawable/menu_selector.xml
+* build/intermediates/res/debug/drawable/red_button_default.xml
+* build/intermediates/res/debug/drawable/smooth_green_shape.xml
+* build/intermediates/res/debug/drawable/white_flat_bg.xml
+* build/intermediates/res/debug/layout/
+* build/intermediates/res/debug/layout/action_input_discount.xml
+* build/intermediates/res/debug/layout/activity_about.xml
+* build/intermediates/res/debug/layout/activity_credit_pay.xml
+* build/intermediates/res/debug/layout/activity_discount.xml
+* build/intermediates/res/debug/layout/activity_food_court_card_pay.xml
+* build/intermediates/res/debug/layout/activity_login.xml
+* build/intermediates/res/debug/layout/activity_main.xml
+* build/intermediates/res/debug/layout/activity_payment.xml
+* build/intermediates/res/debug/layout/activity_product_set.xml
+* build/intermediates/res/debug/layout/activity_promotion.xml
+* build/intermediates/res/debug/layout/activity_reprint.xml
+* build/intermediates/res/debug/layout/activity_sale_report.xml
+* build/intermediates/res/debug/layout/activity_send_endday.xml
+* build/intermediates/res/debug/layout/activity_send_sale.xml
+* build/intermediates/res/debug/layout/activity_void_bill.xml
+* build/intermediates/res/debug/layout/backup_layout.xml
+* build/intermediates/res/debug/layout/bill_report_template.xml
+* build/intermediates/res/debug/layout/bill_viewer.xml
+* build/intermediates/res/debug/layout/button_template.xml
+* build/intermediates/res/debug/layout/comment_list_template.xml
+* build/intermediates/res/debug/layout/confirm_credit_pay_layout.xml
+* build/intermediates/res/debug/layout/date_condition.xml
+* build/intermediates/res/debug/layout/discount_template.xml
+* build/intermediates/res/debug/layout/endday_list_template.xml
+* build/intermediates/res/debug/layout/endday_report_template.xml
+* build/intermediates/res/debug/layout/food_court_payment_result.xml
+* build/intermediates/res/debug/layout/fragment_bill_report.xml
+* build/intermediates/res/debug/layout/fragment_cash_amount.xml
+* build/intermediates/res/debug/layout/fragment_endday_report.xml
+* build/intermediates/res/debug/layout/fragment_food_court_card_pay.xml
+* build/intermediates/res/debug/layout/fragment_product_report.xml
+* build/intermediates/res/debug/layout/hold_bill_layout.xml
+* build/intermediates/res/debug/layout/hold_bill_template.xml
+* build/intermediates/res/debug/layout/input_discount_layout.xml
+* build/intermediates/res/debug/layout/input_text_layout.xml
+* build/intermediates/res/debug/layout/keypad.xml
+* build/intermediates/res/debug/layout/left_mid_right_template.xml
+* build/intermediates/res/debug/layout/menu_comment.xml
+* build/intermediates/res/debug/layout/menu_grid_view.xml
+* build/intermediates/res/debug/layout/menu_image_layout.xml
+* build/intermediates/res/debug/layout/menu_template.xml
+* build/intermediates/res/debug/layout/order_detail_set_item.xml
+* build/intermediates/res/debug/layout/order_list_template.xml
+* build/intermediates/res/debug/layout/order_set_detail_template.xml
+* build/intermediates/res/debug/layout/order_set_item.xml
+* build/intermediates/res/debug/layout/order_set_template.xml
+* build/intermediates/res/debug/layout/other_payment_layout.xml
+* build/intermediates/res/debug/layout/payment_detail_template.xml
+* build/intermediates/res/debug/layout/print_test_layout.xml
+* build/intermediates/res/debug/layout/product_report_template.xml
+* build/intermediates/res/debug/layout/product_size.xml
+* build/intermediates/res/debug/layout/progress.xml
+* build/intermediates/res/debug/layout/receipt_template.xml
+* build/intermediates/res/debug/layout/reprint_trans_template.xml
+* build/intermediates/res/debug/layout/send_trans_template.xml
+* build/intermediates/res/debug/layout/session_spinner.xml
+* build/intermediates/res/debug/layout/set_group_button_layout.xml
+* build/intermediates/res/debug/layout/set_item_template.xml
+* build/intermediates/res/debug/layout/spinner_view.xml
+* build/intermediates/res/debug/layout/sw_layout.xml
+* build/intermediates/res/debug/layout/switch_user_popup.xml
+* build/intermediates/res/debug/layout/template_flex_left_right.xml
+* build/intermediates/res/debug/layout/text_view.xml
+* build/intermediates/res/debug/layout/tv_column_detail.xml
+* build/intermediates/res/debug/layout/tv_column_header.xml
+* build/intermediates/res/debug/layout/void_item_template.xml
+* build/intermediates/res/debug/menu/
+* build/intermediates/res/debug/menu/action_send_sale.xml
+* build/intermediates/res/debug/menu/activity_credit_pay.xml
+* build/intermediates/res/debug/menu/activity_discount.xml
+* build/intermediates/res/debug/menu/activity_login.xml
+* build/intermediates/res/debug/menu/activity_main.xml
+* build/intermediates/res/debug/menu/activity_payment.xml
+* build/intermediates/res/debug/menu/activity_sale_report.xml
+* build/intermediates/res/debug/menu/activity_void_bill.xml
+* build/intermediates/res/debug/menu/food_court_card_pay.xml
+* build/intermediates/res/debug/menu/fragment_sale_report.xml
+* build/intermediates/res/debug/menu/product_set.xml
+* build/intermediates/res/debug/menu/promotion.xml
+* build/intermediates/res/debug/menu/send_endday.xml
+* build/intermediates/res/debug/values-sw600dp-v13/
+* build/intermediates/res/debug/values-sw600dp-v13/values.xml
+* build/intermediates/res/debug/values-sw720dp-v13/
+* build/intermediates/res/debug/values-sw720dp-v13/values.xml
+* build/intermediates/res/debug/values-th/
+* build/intermediates/res/debug/values-th/values.xml
+* build/intermediates/res/debug/values-v11/
+* build/intermediates/res/debug/values-v11/values.xml
+* build/intermediates/res/debug/values-v14/
+* build/intermediates/res/debug/values-v14/values.xml
+* build/intermediates/res/debug/values-w820dp-v13/
+* build/intermediates/res/debug/values-w820dp-v13/values.xml
+* build/intermediates/res/debug/values/
+* build/intermediates/res/debug/values/values.xml
+* build/intermediates/res/debug/xml/
+* build/intermediates/res/debug/xml/pref_connection.xml
+* build/intermediates/res/debug/xml/pref_general.xml
+* build/intermediates/res/debug/xml/pref_headers.xml
+* build/intermediates/res/debug/xml/pref_printer.xml
+* build/intermediates/res/debug/xml/pref_second_display.xml
+* build/intermediates/res/debug/xml/pref_wintec.xml
+* build/intermediates/symbols/
+* build/intermediates/symbols/debug/
+* build/intermediates/symbols/debug/R.txt
+* myrepo_m.iml
+* proguard-project.txt
+* web_hi_res_512.png
+From SynSlidingTab:
+* SynSlidingTab.iml
+* build.gradle
+* build/
+* build/generated/
+* build/generated/source/
+* build/generated/source/buildConfig/
+* build/generated/source/buildConfig/debug/
+* build/generated/source/buildConfig/debug/com/
+* build/generated/source/buildConfig/debug/com/j1tth4/
+* build/generated/source/buildConfig/debug/com/j1tth4/slidinglibs/
+* build/generated/source/buildConfig/debug/com/j1tth4/slidinglibs/BuildConfig.java
+* build/generated/source/buildConfig/release/
+* build/generated/source/buildConfig/release/com/
+* build/generated/source/buildConfig/release/com/j1tth4/
+* build/generated/source/buildConfig/release/com/j1tth4/slidinglibs/
+* build/generated/source/buildConfig/release/com/j1tth4/slidinglibs/BuildConfig.java
+* build/intermediates/
+* build/intermediates/bundles/
+* build/intermediates/bundles/debug/
+* build/intermediates/bundles/debug/AndroidManifest.xml
+* build/intermediates/bundles/release/
+* build/intermediates/bundles/release/AndroidManifest.xml
+* build/intermediates/bundles/release/classes.jar
+* build/intermediates/bundles/release/libs/
+* build/intermediates/bundles/release/libs/android-support-v4.jar
+* build/intermediates/classes/
+* build/intermediates/classes/release/
+* build/intermediates/classes/release/com/
+* build/intermediates/classes/release/com/j1tth4/
+* build/intermediates/classes/release/com/j1tth4/slidinglibs/
+* build/intermediates/classes/release/com/j1tth4/slidinglibs/BuildConfig.class
+* build/intermediates/classes/release/com/j1tth4/slidinglibs/SlidingTabLayout$1.class
+* build/intermediates/classes/release/com/j1tth4/slidinglibs/SlidingTabLayout$InternalViewPagerListener.class
+* build/intermediates/classes/release/com/j1tth4/slidinglibs/SlidingTabLayout$TabClickListener.class
+* build/intermediates/classes/release/com/j1tth4/slidinglibs/SlidingTabLayout$TabColorizer.class
+* build/intermediates/classes/release/com/j1tth4/slidinglibs/SlidingTabLayout.class
+* build/intermediates/classes/release/com/j1tth4/slidinglibs/SlidingTabStrip$1.class
+* build/intermediates/classes/release/com/j1tth4/slidinglibs/SlidingTabStrip$SimpleTabColorizer.class
+* build/intermediates/classes/release/com/j1tth4/slidinglibs/SlidingTabStrip.class
+* build/intermediates/incremental/
+* build/intermediates/incremental/aidl/
+* build/intermediates/incremental/aidl/debug/
+* build/intermediates/incremental/aidl/debug/dependency.store
+* build/intermediates/incremental/aidl/release/
+* build/intermediates/incremental/aidl/release/dependency.store
+* build/intermediates/incremental/mergeAssets/
+* build/intermediates/incremental/mergeAssets/debug/
+* build/intermediates/incremental/mergeAssets/debug/merger.xml
+* build/intermediates/incremental/mergeAssets/release/
+* build/intermediates/incremental/mergeAssets/release/merger.xml
+* build/intermediates/incremental/packageResources/
+* build/intermediates/incremental/packageResources/debug/
+* build/intermediates/incremental/packageResources/debug/merger.xml
+* build/intermediates/incremental/packageResources/release/
+* build/intermediates/incremental/packageResources/release/merger.xml
+* build/outputs/
+* build/outputs/aar/
+* build/outputs/aar/SynSlidingTab.aar
+* build/tmp/
+* build/tmp/packageReleaseJar/
+* build/tmp/packageReleaseJar/MANIFEST.MF
+* proguard-project.txt
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+android-support-v4.jar => com.android.support:support-v4:18.0.0
+gson-2.2.4.jar => com.google.code.gson:gson:2.2.4
+
+Potentially Missing Dependency:
+-------------------------------
+When we replaced the following .jar files with a Gradle dependency, we
+inferred the dependency version number from the filename. This
+specific version may not actually be available from the repository.
+If you get a build error stating that the dependency is missing, edit
+the version number to for example "+" to pick up the latest version
+instead. (This may require you to update your code if the library APIs
+have changed.)
+
+gson-2.2.4.jar => version 2.2.4 in com.google.code.gson:gson:2.2.4
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+In SynSlidingTab:
+* AndroidManifest.xml => synSlidingTab/src/main/AndroidManifest.xml
+* assets/ => synSlidingTab/src/main/assets/
+* lint.xml => synSlidingTab/lint.xml
+* res/ => synSlidingTab/src/main/res/
+* src/ => synSlidingTab/src/main/java/
+In MPOS:
+* AndroidManifest.xml => mPOS/src/main/AndroidManifest.xml
+* assets/ => mPOS/src/main/assets/
+* libs/WTAndroidJar2.jar => mPOS/libs/WTAndroidJar2.jar
+* libs/armeabi/libeposprint.so => mPOS/src/main/jniLibs/armeabi/libeposprint.so
+* libs/armeabi/libjni.so => mPOS/src/main/jniLibs/armeabi/libjni.so
+* libs/ePOS-Print.jar => mPOS/libs/ePOS-Print.jar
+* libs/ksoap2-android-assembly-3.3.0-jar-with-dependencies.jar => mPOS/libs/ksoap2-android-assembly-3.3.0-jar-with-dependencies.jar
+* libs/pinchzoom.jar => mPOS/libs/pinchzoom.jar
+* lint.xml => mPOS/lint.xml
+* res/ => mPOS/src/main/res/
+* src/ => mPOS/src/main/java/
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)
