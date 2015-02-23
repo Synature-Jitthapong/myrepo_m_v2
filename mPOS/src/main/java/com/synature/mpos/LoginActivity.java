@@ -5,17 +5,15 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import com.synature.mpos.SoftwareExpirationChecker.SoftwareExpirationCheckerListener;
-import com.synature.mpos.database.ComputerDao;
-import com.synature.mpos.database.GlobalPropertyDao;
-import com.synature.mpos.database.SessionDao;
-import com.synature.mpos.database.ShopDao;
-import com.synature.mpos.database.StaffsDao;
-import com.synature.mpos.database.SyncHistoryDao;
-import com.synature.mpos.database.UserVerification;
+import com.synature.mpos.datasource.ComputerDataSource;
+import com.synature.mpos.datasource.GlobalPropertyDataSource;
+import com.synature.mpos.datasource.SessionDataSource;
+import com.synature.mpos.datasource.ShopDataSource;
+import com.synature.mpos.datasource.StaffsDataSource;
+import com.synature.mpos.datasource.UserVerification;
 import com.synature.pos.Staff;
 import com.synature.util.FileManager;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -62,11 +60,10 @@ public class LoginActivity extends Activity implements OnClickListener,
 	private int mStaffId;
 	private int mStaffRoleId;
 	
-	private ShopDao mShop;
-	private SessionDao mSession;
-	private ComputerDao mComputer;
-	private GlobalPropertyDao mFormat;
-	private SyncHistoryDao mSync;
+	private ShopDataSource mShop;
+	private SessionDataSource mSession;
+	private ComputerDataSource mComputer;
+	private GlobalPropertyDataSource mFormat;
 	
 	private Button mBtnLogin;
 	private EditText mTxtUser;
@@ -97,23 +94,22 @@ public class LoginActivity extends Activity implements OnClickListener,
 
 		Utils.switchLanguage(this, Utils.getLangCode(this));
 		
-		mSession = new SessionDao(this);
-		mShop = new ShopDao(this);
-		mComputer = new ComputerDao(this);
-		mFormat = new GlobalPropertyDao(this);
-		mSync = new SyncHistoryDao(this);
+		mSession = new SessionDataSource(this);
+		mShop = new ShopDataSource(this);
+		mComputer = new ComputerDataSource(this);
+		mFormat = new GlobalPropertyDataSource(this);
 		try {
 			if(!TextUtils.isEmpty(mShop.getShopName())){
 				setTitle(mShop.getShopName());
 				getActionBar().setSubtitle(mComputer.getComputerProperty().getComputerName());
 			}
-			mTvLastSyncTime.setText(getString(R.string.last_update) + " " + mFormat.dateTimeFormat(mSync.getLastSyncTime()));
+			mTvLastSyncTime.setText(getString(R.string.last_update) + " " + Utils.getSyncDateTime(this));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		// sync new master data every day
 		if(isAlreadySetUrl()){
-			if(!mSync.IsAlreadySync())
+			if(!Utils.isAlreadySync(this))
 				requestValidUrl();
 		}
 	}
@@ -232,7 +228,7 @@ public class LoginActivity extends Activity implements OnClickListener,
 			return true;
 		case R.id.itemReport:
 			mWhatToDo = WhatToDo.VIEW_REPORT;
-			userFragment = UserVerifyDialogFragment.newInstance(StaffsDao.VIEW_REPORT_PERMISSION);
+			userFragment = UserVerifyDialogFragment.newInstance(StaffsDataSource.VIEW_REPORT_PERMISSION);
 			userFragment.show(getFragmentManager(), UserVerifyDialogFragment.TAG);
 			return true;
 		case R.id.itemSwLang:
@@ -596,7 +592,7 @@ public class LoginActivity extends Activity implements OnClickListener,
 						mTxtUser.setText(null);
 						mTxtPass.setText(null);
 						if(checkSessionDate()){
-							StaffsDao st = new StaffsDao(LoginActivity.this);
+							StaffsDataSource st = new StaffsDataSource(LoginActivity.this);
 							if(st.checkAccessPOSPermission(s.getStaffRoleID())){
 								gotoMainActivity();
 							}else{

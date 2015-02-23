@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import com.synature.mpos.database.ComputerDao;
-import com.synature.mpos.database.PaymentDetailDao;
-import com.synature.mpos.database.ProductsDao;
-import com.synature.mpos.database.SessionDao;
-import com.synature.mpos.database.ShopDao;
-import com.synature.mpos.database.TransactionDao;
-import com.synature.mpos.database.model.OrderDetail;
-import com.synature.mpos.database.model.Product;
-import com.synature.mpos.database.table.ProductTable;
+import com.synature.mpos.datasource.ComputerDataSource;
+import com.synature.mpos.datasource.PaymentDetailDataSource;
+import com.synature.mpos.datasource.ProductsDataSource;
+import com.synature.mpos.datasource.SessionDataSource;
+import com.synature.mpos.datasource.ShopDataSource;
+import com.synature.mpos.datasource.TransactionDataSource;
+import com.synature.mpos.datasource.model.OrderDetail;
+import com.synature.mpos.datasource.model.Product;
+import com.synature.mpos.datasource.table.ProductTable;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -30,9 +30,9 @@ public class PerformTest extends DialogFragment{
 
 	public static final int TRANS_LOOP = 1000;
 	
-	private SessionDao mSession;
-	private TransactionDao mTrans;
-	private PaymentDetailDao mPayment;
+	private SessionDataSource mSession;
+	private TransactionDataSource mTrans;
+	private PaymentDetailDataSource mPayment;
 	
 	public static PerformTest newInstance(){
 		PerformTest f = new PerformTest();
@@ -42,9 +42,9 @@ public class PerformTest extends DialogFragment{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mSession = new SessionDao(getActivity());
-		mTrans = new TransactionDao(getActivity());
-		mPayment = new PaymentDetailDao(getActivity());
+		mSession = new SessionDataSource(getActivity());
+		mTrans = new TransactionDataSource(getActivity());
+		mPayment = new PaymentDetailDataSource(getActivity());
 	}
 
 	@Override
@@ -78,8 +78,8 @@ public class PerformTest extends DialogFragment{
 					public void run() {
 						final String startTime = DateFormat.getInstance().format(Calendar.getInstance().getTime());
 						Log.i("Begin", startTime);
-						ShopDao shop = new ShopDao(getActivity());
-						ComputerDao comp = new ComputerDao(getActivity());
+						ShopDataSource shop = new ShopDataSource(getActivity());
+						ComputerDataSource comp = new ComputerDataSource(getActivity());
 						
 						mSession.openSession(shop.getShopId(), comp.getComputerId(), 1, 100);
 						for(int i = 0; i < TRANS_LOOP; i++){
@@ -135,7 +135,7 @@ public class PerformTest extends DialogFragment{
 
 	private List<Product> listAllProduct(){
 		List<Product> proLst = null;
-		ProductsDao db = new ProductsDao(getActivity());
+		ProductsDataSource db = new ProductsDataSource(getActivity());
 		Cursor cursor = db.getReadableDatabase().rawQuery(
 				"SELECT * FROM " + ProductTable.TABLE_PRODUCT, null);
 		if(cursor.moveToFirst()){

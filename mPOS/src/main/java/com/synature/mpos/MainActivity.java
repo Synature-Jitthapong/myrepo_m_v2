@@ -18,22 +18,22 @@ import java.util.concurrent.Executors;
 
 import com.j1tth4.slidinglibs.SlidingTabLayout;
 import com.synature.mpos.SwitchLangFragment.OnChangeLanguageListener;
-import com.synature.mpos.database.ComputerDao;
-import com.synature.mpos.database.GlobalPropertyDao;
-import com.synature.mpos.database.PaymentDetailDao;
-import com.synature.mpos.database.PrintReceiptLogDao;
-import com.synature.mpos.database.ProductsDao;
-import com.synature.mpos.database.SessionDao;
-import com.synature.mpos.database.ShopDao;
-import com.synature.mpos.database.StaffsDao;
-import com.synature.mpos.database.TransactionDao;
-import com.synature.mpos.database.UserVerification;
-import com.synature.mpos.database.model.OrderComment;
-import com.synature.mpos.database.model.OrderDetail;
-import com.synature.mpos.database.model.OrderSet.OrderSetDetail;
-import com.synature.mpos.database.model.OrderTransaction;
-import com.synature.mpos.database.model.Product;
-import com.synature.mpos.database.model.ProductDept;
+import com.synature.mpos.datasource.ComputerDataSource;
+import com.synature.mpos.datasource.GlobalPropertyDataSource;
+import com.synature.mpos.datasource.PaymentDetailDataSource;
+import com.synature.mpos.datasource.PrintReceiptLogDataSource;
+import com.synature.mpos.datasource.ProductsDataSource;
+import com.synature.mpos.datasource.SessionDataSource;
+import com.synature.mpos.datasource.ShopDataSource;
+import com.synature.mpos.datasource.StaffsDataSource;
+import com.synature.mpos.datasource.TransactionDataSource;
+import com.synature.mpos.datasource.UserVerification;
+import com.synature.mpos.datasource.model.OrderComment;
+import com.synature.mpos.datasource.model.OrderDetail;
+import com.synature.mpos.datasource.model.OrderSet.OrderSetDetail;
+import com.synature.mpos.datasource.model.OrderTransaction;
+import com.synature.mpos.datasource.model.Product;
+import com.synature.mpos.datasource.model.ProductDept;
 import com.synature.mpos.seconddisplay.SecondDisplayJSON;
 import com.synature.pos.SecondDisplayProperty.clsSecDisplay_TransSummary;
 import com.synature.util.ImageLoader;
@@ -129,13 +129,13 @@ public class MainActivity extends FragmentActivity implements
 	 */
 	private WintecCustomerDisplay mDsp;
 
-	private ProductsDao mProducts;
-	private ShopDao mShop;
-	private GlobalPropertyDao mGlobal;
+	private ProductsDataSource mProducts;
+	private ShopDataSource mShop;
+	private GlobalPropertyDataSource mGlobal;
 	
-	private SessionDao mSession;
-	private TransactionDao mTrans;
-	private ComputerDao mComputer;
+	private SessionDataSource mSession;
+	private TransactionDataSource mTrans;
+	private ComputerDataSource mComputer;
 	
 	private List<OrderDetail> mOrderDetailLst;
 	private OrderDetailAdapter mOrderDetailAdapter;
@@ -175,12 +175,12 @@ public class MainActivity extends FragmentActivity implements
 		mStaffId = intent.getIntExtra("staffId", 0);
 		mStaffRoleId = intent.getIntExtra("staffRoleId", 0);
 		
-		mSession = new SessionDao(this);
-		mTrans = new TransactionDao(this);
-		mProducts = new ProductsDao(this);
-		mShop = new ShopDao(this);
-		mComputer = new ComputerDao(this);
-		mGlobal = new GlobalPropertyDao(this);
+		mSession = new SessionDataSource(this);
+		mTrans = new TransactionDataSource(this);
+		mProducts = new ProductsDataSource(this);
+		mShop = new ShopDataSource(this);
+		mComputer = new ComputerDataSource(this);
+		mGlobal = new GlobalPropertyDataSource(this);
 		
 		mShopId = mShop.getShopId();
 		mComputerId = mComputer.getComputerId();
@@ -242,7 +242,7 @@ public class MainActivity extends FragmentActivity implements
 	}
 	
 	private void setupTitle(){
-		StaffsDao staff = new StaffsDao(this);
+		StaffsDataSource staff = new StaffsDataSource(this);
 		com.synature.pos.Staff s = staff.getStaff(mStaffId);
 		setTitle(mShop.getShopName());
 		getActionBar().setSubtitle(s.getStaffName());
@@ -626,7 +626,7 @@ public class MainActivity extends FragmentActivity implements
 	 */
 	private void printReceipt(int transactionId, int staffId, int printType){
 		// log receipt for print task
-		PrintReceiptLogDao printLog = new PrintReceiptLogDao(MainActivity.this);
+		PrintReceiptLogDataSource printLog = new PrintReceiptLogDataSource(MainActivity.this);
 		int isCopy = 0;
 		for(int i = 0; i < mComputer.getReceiptHasCopy(); i++){
 			if(i > 0)
@@ -784,12 +784,12 @@ public class MainActivity extends FragmentActivity implements
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					OrderDetail sumOrder = mTrans.getSummaryOrder(mTransactionId, true);
-					PaymentDetailDao payment = new PaymentDetailDao(MainActivity.this);
+					PaymentDetailDataSource payment = new PaymentDetailDataSource(MainActivity.this);
 					double totalSalePrice = sumOrder.getTotalSalePrice() + sumOrder.getVatExclude();
 					double totalPaid = Utils.roundingPrice(mGlobal.getRoundingType(), totalSalePrice);
 					
 					payment.deleteAllPaymentDetail(mTransactionId);
-					payment.addPaymentDetail(mTransactionId, mComputerId, PaymentDetailDao.PAY_TYPE_CASH, 
+					payment.addPaymentDetail(mTransactionId, mComputerId, PaymentDetailDataSource.PAY_TYPE_CASH,
 							totalPaid, totalPaid, "", 0, 0, 0, 0, "");
 					payment.confirmPayment(mTransactionId);
 					
@@ -814,7 +814,7 @@ public class MainActivity extends FragmentActivity implements
 	private void payment(){
 		if(mOrderDetailLst.size() > 0){
 			// food court type
-			if(mShop.getFastFoodType() == ShopDao.SHOP_TYPE_FOOD_COURT){
+			if(mShop.getFastFoodType() == ShopDataSource.SHOP_TYPE_FOOD_COURT){
 				Intent intent = new Intent(MainActivity.this, FoodCourtCardPayActivity.class);
 				intent.putExtra("transactionId", mTransactionId);
 				intent.putExtra("shopId", mShopId);
@@ -846,9 +846,9 @@ public class MainActivity extends FragmentActivity implements
 	 */
 	private void discount(){
 		if(mOrderDetailLst.size() > 0){
-			StaffsDao st = new StaffsDao(MainActivity.this);
+			StaffsDataSource st = new StaffsDataSource(MainActivity.this);
 			if(!st.checkOtherDiscountPermission(mStaffRoleId)){
-				UserVerifyDialogFragment uvf = UserVerifyDialogFragment.newInstance(StaffsDao.OTHER_DISCOUNT_PERMISSION);
+				UserVerifyDialogFragment uvf = UserVerifyDialogFragment.newInstance(StaffsDataSource.OTHER_DISCOUNT_PERMISSION);
 				uvf.show(getFragmentManager(), "StaffPermissionDialog");
 			}else{
 				goToOtherDiscountActivity();
@@ -1085,7 +1085,7 @@ public class MainActivity extends FragmentActivity implements
 			}else{
 				holder.txtOrderQty.clearFocus();
 			}
-			if(orderDetail.getProductTypeId() == ProductsDao.SET_CAN_SELECT){
+			if(orderDetail.getProductTypeId() == ProductsDataSource.SET_CAN_SELECT){
 				holder.btnSetMod.setVisibility(View.VISIBLE);
 				holder.btnComment.setVisibility(View.GONE);
 			}else{
@@ -1397,7 +1397,7 @@ public class MainActivity extends FragmentActivity implements
 					holder.tvPrice.setText(((MainActivity) 
 							getActivity()).mGlobal.currencyFormat(p.getProductPrice()));
 				}
-				if(p.getProductTypeId() == ProductsDao.SIZE){
+				if(p.getProductTypeId() == ProductsDataSource.SIZE){
 					holder.tvPrice.setText("(size)");
 				}
 				if(Utils.isShowMenuImage(getActivity())){
@@ -1491,13 +1491,13 @@ public class MainActivity extends FragmentActivity implements
 			int productTypeId, int vatType, double vatRate, double productPrice) {
 		mDsp.setItemName(TextUtils.isEmpty(productName2) ? productName : productName2);
 		mDsp.setItemQty(mGlobal.qtyFormat(1));
-		if(productTypeId == ProductsDao.NORMAL_TYPE || 
-				productTypeId == ProductsDao.SET){
+		if(productTypeId == ProductsDataSource.NORMAL_TYPE ||
+				productTypeId == ProductsDataSource.SET){
 			addOrder(productId, productName, productTypeId, 
 					vatType, vatRate, getOrderingQty(), productPrice);
-		}else if(productTypeId == ProductsDao.SIZE){
+		}else if(productTypeId == ProductsDataSource.SIZE){
 			productSizeDialog(productId, productName);
-		}else if(productTypeId == ProductsDao.SET_CAN_SELECT){
+		}else if(productTypeId == ProductsDataSource.SET_CAN_SELECT){
 			Intent intent = new Intent(MainActivity.this, ProductSetActivity.class);
 			intent.putExtra("mode", ProductSetActivity.ADD_MODE);
 			intent.putExtra("transactionId", mTransactionId);
@@ -1693,7 +1693,7 @@ public class MainActivity extends FragmentActivity implements
 	 * Logout
 	 */
 	public void logout() {
-		StaffsDao staff = new StaffsDao(this);
+		StaffsDataSource staff = new StaffsDataSource(this);
 		com.synature.pos.Staff s = staff.getStaff(mStaffId);
 		new AlertDialog.Builder(MainActivity.this)
 		.setTitle(R.string.logout)
@@ -1947,9 +1947,9 @@ public class MainActivity extends FragmentActivity implements
 	 * void bill
 	 */
 	private void voidBill(){
-		StaffsDao st = new StaffsDao(MainActivity.this);
+		StaffsDataSource st = new StaffsDataSource(MainActivity.this);
 		if(!st.checkVoidPermission(mStaffRoleId)){
-			UserVerifyDialogFragment uvf = UserVerifyDialogFragment.newInstance(StaffsDao.VOID_PERMISSION);
+			UserVerifyDialogFragment uvf = UserVerifyDialogFragment.newInstance(StaffsDataSource.VOID_PERMISSION);
 			uvf.show(getFragmentManager(), "StaffPermissionDialog");
 		}else{
 			goToVoidActivity(mStaffId);
@@ -2382,7 +2382,7 @@ public class MainActivity extends FragmentActivity implements
 	}
 	
 	private void initSecondDisplay(){
-		StaffsDao s = new StaffsDao(this);
+		StaffsDataSource s = new StaffsDataSource(this);
 		final String initJson = SecondDisplayJSON.genInitDisplay(mShop.getShopName(), 
 				s.getStaff(mStaffId).getStaffName());
 		new Thread(new Runnable(){
@@ -2502,10 +2502,10 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	public void onAllow(int staffId, int permissionId) {
 		switch(permissionId){
-		case StaffsDao.VOID_PERMISSION:
+		case StaffsDataSource.VOID_PERMISSION:
 			goToVoidActivity(staffId);
 			break;
-		case StaffsDao.OTHER_DISCOUNT_PERMISSION:
+		case StaffsDataSource.OTHER_DISCOUNT_PERMISSION:
 			goToOtherDiscountActivity();
 			break;
 		}

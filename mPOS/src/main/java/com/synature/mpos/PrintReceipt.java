@@ -5,7 +5,7 @@ import java.util.List;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.synature.mpos.database.PrintReceiptLogDao;
+import com.synature.mpos.datasource.PrintReceiptLogDataSource;
 import com.synature.util.Logger;
 
 public class PrintReceipt extends AsyncTask<Void, Void, Void>{
@@ -17,7 +17,7 @@ public class PrintReceipt extends AsyncTask<Void, Void, Void>{
 	
 	protected OnPrintReceiptListener mListener;
 	
-	protected PrintReceiptLogDao mPrintLog;
+	protected PrintReceiptLogDataSource mPrintLog;
 	protected Context mContext;
 	
 	/**
@@ -25,15 +25,15 @@ public class PrintReceipt extends AsyncTask<Void, Void, Void>{
 	 */
 	public PrintReceipt(Context context, OnPrintReceiptListener listener){
 		mContext = context;
-		mPrintLog = new PrintReceiptLogDao(context);
+		mPrintLog = new PrintReceiptLogDataSource(context);
 		mListener = listener;
 	}
 
 	@Override
 	protected Void doInBackground(Void... arg0) {
-		List<PrintReceiptLogDao.PrintReceipt> printLogLst = mPrintLog.listPrintReceiptLog(); 
+		List<PrintReceiptLogDataSource.PrintReceipt> printLogLst = mPrintLog.listPrintReceiptLog();
 		for(int i = 0; i < printLogLst.size(); i++){
-			PrintReceiptLogDao.PrintReceipt printReceipt = printLogLst.get(i);
+			PrintReceiptLogDataSource.PrintReceipt printReceipt = printLogLst.get(i);
 			try {
 				if(Utils.isInternalPrinterSetting(mContext)){
 					WintecPrinter wtPrinter = new WintecPrinter(mContext);
@@ -47,7 +47,7 @@ public class PrintReceipt extends AsyncTask<Void, Void, Void>{
 				mPrintLog.deletePrintStatus(printReceipt.getPrintId(), printReceipt.getTransactionId());
 				
 			} catch (Exception e) {
-				mPrintLog.updatePrintStatus(printReceipt.getPrintId(), printReceipt.getTransactionId(), PrintReceiptLogDao.PRINT_NOT_SUCCESS);
+				mPrintLog.updatePrintStatus(printReceipt.getPrintId(), printReceipt.getTransactionId(), PrintReceiptLogDataSource.PRINT_NOT_SUCCESS);
 				Logger.appendLog(mContext, 
 						MPOSApplication.LOG_PATH, MPOSApplication.LOG_FILE_NAME, 
 						" Print receipt fail : " + e.getMessage());

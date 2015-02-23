@@ -7,22 +7,22 @@ import java.util.List;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.synature.mpos.database.CreditCardDao;
-import com.synature.mpos.database.GlobalPropertyDao;
-import com.synature.mpos.database.HeaderFooterReceiptDao;
-import com.synature.mpos.database.PaymentDetailDao;
-import com.synature.mpos.database.ProductsDao;
-import com.synature.mpos.database.Reporting;
-import com.synature.mpos.database.SessionDao;
-import com.synature.mpos.database.ShopDao;
-import com.synature.mpos.database.StaffsDao;
-import com.synature.mpos.database.TransactionDao;
-import com.synature.mpos.database.Reporting.SimpleProductData;
-import com.synature.mpos.database.model.Comment;
-import com.synature.mpos.database.model.MPOSPaymentDetail;
-import com.synature.mpos.database.model.OrderDetail;
-import com.synature.mpos.database.model.OrderSet.OrderSetDetail;
-import com.synature.mpos.database.model.OrderTransaction;
+import com.synature.mpos.datasource.CreditCardDataSource;
+import com.synature.mpos.datasource.GlobalPropertyDataSource;
+import com.synature.mpos.datasource.HeaderFooterReceiptDataSource;
+import com.synature.mpos.datasource.PaymentDetailDataSource;
+import com.synature.mpos.datasource.ProductsDataSource;
+import com.synature.mpos.datasource.Reporting;
+import com.synature.mpos.datasource.SessionDataSource;
+import com.synature.mpos.datasource.ShopDataSource;
+import com.synature.mpos.datasource.StaffsDataSource;
+import com.synature.mpos.datasource.TransactionDataSource;
+import com.synature.mpos.datasource.Reporting.SimpleProductData;
+import com.synature.mpos.datasource.model.Comment;
+import com.synature.mpos.datasource.model.MPOSPaymentDetail;
+import com.synature.mpos.datasource.model.OrderDetail;
+import com.synature.mpos.datasource.model.OrderSet.OrderSetDetail;
+import com.synature.mpos.datasource.model.OrderTransaction;
 import com.synature.pos.Report;
 import com.synature.pos.Staff;
 import com.synature.util.Logger;
@@ -34,26 +34,26 @@ public abstract class PrinterBase {
 	public static final int MAX_TEXT_LENGTH = 32;
 	public static final int MAX_TEXT_WITH_QTY_LENGTH = 25;
 	
-	protected TransactionDao mTrans;
-	protected PaymentDetailDao mPayment;
-	protected ShopDao mShop;
-	protected HeaderFooterReceiptDao mHeaderFooter;
-	protected GlobalPropertyDao mFormat;
-	protected StaffsDao mStaff;
-	protected CreditCardDao mCreditCard;
+	protected TransactionDataSource mTrans;
+	protected PaymentDetailDataSource mPayment;
+	protected ShopDataSource mShop;
+	protected HeaderFooterReceiptDataSource mHeaderFooter;
+	protected GlobalPropertyDataSource mFormat;
+	protected StaffsDataSource mStaff;
+	protected CreditCardDataSource mCreditCard;
 	protected Context mContext;
 	
 	protected StringBuilder mTextToPrint;
 	
 	public PrinterBase(Context context){
 		mContext = context;
-		mTrans = new TransactionDao(context);
-		mPayment = new PaymentDetailDao(context);
-		mShop = new ShopDao(context);
-		mFormat = new GlobalPropertyDao(context);
-		mHeaderFooter = new HeaderFooterReceiptDao(context);
-		mStaff = new StaffsDao(context);
-		mCreditCard = new CreditCardDao(context);
+		mTrans = new TransactionDataSource(context);
+		mPayment = new PaymentDetailDataSource(context);
+		mShop = new ShopDataSource(context);
+		mFormat = new GlobalPropertyDataSource(context);
+		mHeaderFooter = new HeaderFooterReceiptDataSource(context);
+		mStaff = new StaffsDataSource(context);
+		mCreditCard = new CreditCardDataSource(context);
 		mTextToPrint = new StringBuilder();
 	}
 	 
@@ -199,7 +199,7 @@ public abstract class PrinterBase {
 		for(Reporting.SaleTransactionReport report : saleReportLst){
 			mTextToPrint.append(mFormat.dateFormat(report.getSaleDate()) + "\n");
 			for(OrderTransaction trans : report.getTransLst()){
-				String receiptNo = trans.getTransactionStatusId() == TransactionDao.TRANS_STATUS_VOID ? trans.getReceiptNo() + "(void)" : trans.getReceiptNo();
+				String receiptNo = trans.getTransactionStatusId() == TransactionDataSource.TRANS_STATUS_VOID ? trans.getReceiptNo() + "(void)" : trans.getReceiptNo();
 				String totalSale = mFormat.currencyFormat(trans.getTransactionVatable());
 				String closeTime = mFormat.timeFormat(trans.getCloseTime()) + 
 						createQtySpace(calculateLength(totalSale));
@@ -323,7 +323,7 @@ public abstract class PrinterBase {
 	 * @param dateTo
 	 */
 	protected void createTextForPrintSummaryReport(int sessionId, int staffId, String dateTo){
-		SessionDao session = new SessionDao(mContext.getApplicationContext());
+		SessionDataSource session = new SessionDataSource(mContext.getApplicationContext());
 		String sessionDate = session.getLastSessionDate();
 		if(!TextUtils.isEmpty(dateTo))
 			sessionDate = dateTo;
@@ -348,8 +348,8 @@ public abstract class PrinterBase {
 		mTextToPrint.append(mFormat.dateFormat(sessionDate) + "\n");
 		mTextToPrint.append(mContext.getString(R.string.shop) + " " + mShop.getShopProperty().getShopName() + "\n");
 		if(sessionId != 0){
-			com.synature.mpos.database.model.Session sess = session.getSession(sessionId);
-			StaffsDao st = new StaffsDao(mContext);
+			com.synature.mpos.datasource.model.Session sess = session.getSession(sessionId);
+			StaffsDataSource st = new StaffsDataSource(mContext);
 			Staff std = st.getStaff(sess.getOpenStaff());
 			mTextToPrint.append(mContext.getString(R.string.open_by) + " " + std.getStaffName() + " " + mFormat.timeFormat(sess.getOpenDate()) + "\n");
 			std = st.getStaff(sess.getCloseStaff());
@@ -459,7 +459,7 @@ public abstract class PrinterBase {
 			mTextToPrint.append(grandTotal + "\n");
 		}
 		
-		if(mShop.getCompanyVatType() == ProductsDao.VAT_TYPE_INCLUDED){
+		if(mShop.getCompanyVatType() == ProductsDataSource.VAT_TYPE_INCLUDED){
 			String beforeVatText = mContext.getString(R.string.before_vat);
 			String beforeVat = mFormat.currencyFormat(trans.getTransactionVatable() - trans.getTransactionVat());
 			String totalVatText = mContext.getString(R.string.total_vat) + " " +
@@ -650,7 +650,7 @@ public abstract class PrinterBase {
 			mTextToPrint.append(mContext.getString(R.string.remark) + " " + trans.getTransactionNote() + "\n");
 		}else{
 			for(com.synature.pos.HeaderFooterReceipt hf : 
-				mHeaderFooter.listHeaderFooter(HeaderFooterReceiptDao.HEADER_LINE_TYPE)){
+				mHeaderFooter.listHeaderFooter(HeaderFooterReceiptDataSource.HEADER_LINE_TYPE)){
 				mTextToPrint.append(adjustAlignCenter(hf.getTextInLine()) + "\n");
 			}
 		}
@@ -787,7 +787,7 @@ public abstract class PrinterBase {
     	mTextToPrint.append(createLine("=") + "\n");
     	// add footer
     	for(com.synature.pos.HeaderFooterReceipt hf : 
-			mHeaderFooter.listHeaderFooter(HeaderFooterReceiptDao.FOOTER_LINE_TYPE)){
+			mHeaderFooter.listHeaderFooter(HeaderFooterReceiptDataSource.FOOTER_LINE_TYPE)){
 			mTextToPrint.append(adjustAlignCenter(hf.getTextInLine()) + "\n");
 		}
 	}
@@ -803,7 +803,7 @@ public abstract class PrinterBase {
 		if(totalPaid == 0){
 			totalPaid = Utils.roundingPrice(mFormat.getRoundingType(), sumOrder.getTotalSalePrice());
 		}
-		boolean isVoid = trans.getTransactionStatusId() == TransactionDao.WASTE_TRANS_STATUS_VOID;
+		boolean isVoid = trans.getTransactionStatusId() == TransactionDataSource.WASTE_TRANS_STATUS_VOID;
 		
 		// have copy
 		if(isCopy){
@@ -927,7 +927,7 @@ public abstract class PrinterBase {
 		}
 		double change = totalPayAmount - totalPaid;
 		boolean isShowVat = mShop.getShopProperty().getPrintVatInReceipt() == 1;
-		boolean isVoid = trans.getTransactionStatusId() == TransactionDao.TRANS_STATUS_VOID;
+		boolean isVoid = trans.getTransactionStatusId() == TransactionDataSource.TRANS_STATUS_VOID;
 		
 		// have copy
 		if(isCopy){
@@ -949,7 +949,7 @@ public abstract class PrinterBase {
 		}
 		// add header
 		for(com.synature.pos.HeaderFooterReceipt hf : 
-			mHeaderFooter.listHeaderFooter(HeaderFooterReceiptDao.HEADER_LINE_TYPE)){
+			mHeaderFooter.listHeaderFooter(HeaderFooterReceiptDataSource.HEADER_LINE_TYPE)){
 			mTextToPrint.append(adjustAlignCenter(hf.getTextInLine()) + "\n");
 		}
 		
@@ -1091,7 +1091,7 @@ public abstract class PrinterBase {
     	for(int i = 0; i < paymentLst.size(); i++){
     		MPOSPaymentDetail payment = paymentLst.get(i);
 	    	String strTotalPaid = mFormat.currencyFormat(payment.getTotalPay());
-	    	if(payment.getPayTypeId() == PaymentDetailDao.PAY_TYPE_CREDIT){
+	    	if(payment.getPayTypeId() == PaymentDetailDataSource.PAY_TYPE_CREDIT){
 	    		String paymentText = payment.getPayTypeName();
 	    		String cardNoText = "xxxx xxxx xxxx ";
 	    		try {
@@ -1168,7 +1168,7 @@ public abstract class PrinterBase {
 	    
     	// add footer
     	for(com.synature.pos.HeaderFooterReceipt hf : 
-			mHeaderFooter.listHeaderFooter(HeaderFooterReceiptDao.FOOTER_LINE_TYPE)){
+			mHeaderFooter.listHeaderFooter(HeaderFooterReceiptDataSource.FOOTER_LINE_TYPE)){
 			mTextToPrint.append(adjustAlignCenter(hf.getTextInLine()) + "\n");
 		}
 

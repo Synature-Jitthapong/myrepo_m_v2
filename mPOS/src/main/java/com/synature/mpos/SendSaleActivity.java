@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import com.synature.mpos.database.GlobalPropertyDao;
-import com.synature.mpos.database.MPOSDatabase;
-import com.synature.mpos.database.TransactionDao;
-import com.synature.mpos.database.table.BaseColumn;
-import com.synature.mpos.database.table.ComputerTable;
-import com.synature.mpos.database.table.OrderTransTable;
-import com.synature.mpos.database.table.SessionTable;
+import com.synature.mpos.datasource.GlobalPropertyDataSource;
+import com.synature.mpos.datasource.MPOSDatabase;
+import com.synature.mpos.datasource.TransactionDataSource;
+import com.synature.mpos.datasource.table.BaseColumn;
+import com.synature.mpos.datasource.table.ComputerTable;
+import com.synature.mpos.datasource.table.OrderTransTable;
+import com.synature.mpos.datasource.table.SessionTable;
 import com.synature.pos.OrderTransaction;
 
 import android.annotation.SuppressLint;
@@ -47,7 +47,7 @@ public class SendSaleActivity extends Activity{
 	private int mComputerId;
 	private int mStaffId;
 	private String mDate;
-	private GlobalPropertyDao mGlobal;
+	private GlobalPropertyDataSource mGlobal;
 	private List<OrderTransaction> mTransLst;
 	private SyncItemAdapter mSyncAdapter;
 	private MenuItem mItemSendAll;
@@ -73,7 +73,7 @@ public class SendSaleActivity extends Activity{
 		setContentView(R.layout.activity_send_sale);
 		
 		mLvSyncItem = (ListView) findViewById(R.id.lvSync);
-		mGlobal = new GlobalPropertyDao(this);
+		mGlobal = new GlobalPropertyDataSource(this);
 		
 		Intent intent = getIntent();
 		mStaffId = intent.getIntExtra("staffId", 0);
@@ -217,8 +217,8 @@ public class SendSaleActivity extends Activity{
                 + " AND " + BaseColumn.COLUMN_SEND_STATUS + " =? ",
 				new String[]{
 					mDate,
-                    String.valueOf(TransactionDao.TRANS_STATUS_VOID),
-					String.valueOf(TransactionDao.TRANS_STATUS_SUCCESS),
+                    String.valueOf(TransactionDataSource.TRANS_STATUS_VOID),
+					String.valueOf(TransactionDataSource.TRANS_STATUS_SUCCESS),
 				 	String.valueOf(MPOSDatabase.NOT_SEND)
 				}, null, null, OrderTransTable.COLUMN_TRANS_ID);
 		if(cursor.moveToFirst()){

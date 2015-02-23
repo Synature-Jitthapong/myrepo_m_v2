@@ -4,12 +4,12 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.synature.mpos.database.GlobalPropertyDao;
-import com.synature.mpos.database.PaymentAmountButtonDao;
-import com.synature.mpos.database.PaymentDetailDao;
-import com.synature.mpos.database.TransactionDao;
-import com.synature.mpos.database.model.MPOSPaymentDetail;
-import com.synature.mpos.database.model.OrderDetail;
+import com.synature.mpos.datasource.GlobalPropertyDataSource;
+import com.synature.mpos.datasource.PaymentAmountButtonDataSource;
+import com.synature.mpos.datasource.PaymentDetailDataSource;
+import com.synature.mpos.datasource.TransactionDataSource;
+import com.synature.mpos.datasource.model.MPOSPaymentDetail;
+import com.synature.mpos.datasource.model.OrderDetail;
 import com.synature.pos.PayType;
 
 import android.os.Bundle;
@@ -49,9 +49,9 @@ public class PaymentActivity extends Activity implements OnClickListener,
 	 */
 	private int mResultCreditCode = RESULT_NOT_ENOUGH;
 	
-	private PaymentDetailDao mPayment;
-	private TransactionDao mTrans;
-	private GlobalPropertyDao mGlobal;
+	private PaymentDetailDataSource mPayment;
+	private TransactionDataSource mTrans;
+	private GlobalPropertyDataSource mGlobal;
 	
 	private List<MPOSPaymentDetail> mPayLst;
 	private PaymentAdapter mPaymentAdapter;
@@ -107,9 +107,9 @@ public class PaymentActivity extends Activity implements OnClickListener,
 		mComputerId = intent.getIntExtra("computerId", 0);
 		mStaffId = intent.getIntExtra("staffId", 0);
 		
-		mTrans = new TransactionDao(this);
-		mPayment = new PaymentDetailDao(this);
-		mGlobal = new GlobalPropertyDao(this);
+		mTrans = new TransactionDataSource(this);
+		mPayment = new PaymentDetailDataSource(this);
+		mGlobal = new GlobalPropertyDataSource(this);
 		
 		mPaymentAdapter = new PaymentAdapter();
 		mPayLst = new ArrayList<MPOSPaymentDetail>();
@@ -407,7 +407,7 @@ public class PaymentActivity extends Activity implements OnClickListener,
 			break;
 		case R.id.btnEnter:
 			if(!mStrTotalPay.toString().isEmpty()){
-				addPayment(PaymentDetailDao.PAY_TYPE_CASH, "");
+				addPayment(PaymentDetailDataSource.PAY_TYPE_CASH, "");
 			}
 			break;
 		}
@@ -506,9 +506,9 @@ public class PaymentActivity extends Activity implements OnClickListener,
 
 				@Override
 				public void onClick(View v) {
-					if(payType.getPayTypeID() == PaymentDetailDao.PAY_TYPE_CASH){
+					if(payType.getPayTypeID() == PaymentDetailDataSource.PAY_TYPE_CASH){
 						
-					}else if(payType.getPayTypeID() == PaymentDetailDao.PAY_TYPE_CREDIT){
+					}else if(payType.getPayTypeID() == PaymentDetailDataSource.PAY_TYPE_CREDIT){
 						creditPay();
 					}else{
 						popupOtherPayment(payType.getPayTypeName(), payType.getPayTypeID());
@@ -531,14 +531,14 @@ public class PaymentActivity extends Activity implements OnClickListener,
 	
 	private class PaymentButtonAdapter extends BaseAdapter{
 		
-		private PaymentAmountButtonDao mPaymentButton;
+		private PaymentAmountButtonDataSource mPaymentButton;
 		private List<com.synature.pos.PaymentAmountButton> mPaymentButtonLst;
 		private LayoutInflater mInflater;
 		
 		public PaymentButtonAdapter(){
 			mInflater = (LayoutInflater)
 					PaymentActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			mPaymentButton = new PaymentAmountButtonDao(PaymentActivity.this);
+			mPaymentButton = new PaymentAmountButtonDataSource(PaymentActivity.this);
 			mPaymentButtonLst = mPaymentButton.listPaymentButton();
 		}
 		
@@ -582,7 +582,7 @@ public class PaymentActivity extends Activity implements OnClickListener,
 					mStrTotalPay.append(mGlobal.currencyFormat(
 							paymentButton.getPaymentAmount()));
 					calculateInputPrice();
-					addPayment(PaymentDetailDao.PAY_TYPE_CASH, "");
+					addPayment(PaymentDetailDataSource.PAY_TYPE_CASH, "");
 				}
 				
 			});

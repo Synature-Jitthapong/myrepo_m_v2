@@ -2,12 +2,12 @@ package com.synature.mpos;
 
 import java.util.List;
 
-import com.synature.mpos.database.GlobalPropertyDao;
-import com.synature.mpos.database.ProductsDao;
-import com.synature.mpos.database.PromotionDiscountDao;
-import com.synature.mpos.database.TransactionDao;
-import com.synature.mpos.database.model.OrderDetail;
-import com.synature.mpos.database.model.OrderTransaction;
+import com.synature.mpos.datasource.GlobalPropertyDataSource;
+import com.synature.mpos.datasource.ProductsDataSource;
+import com.synature.mpos.datasource.PromotionDiscountDataSource;
+import com.synature.mpos.datasource.TransactionDataSource;
+import com.synature.mpos.datasource.model.OrderDetail;
+import com.synature.mpos.datasource.model.OrderTransaction;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -32,9 +32,9 @@ public class PromotionActivity extends Activity {
 
 	public static final String TAG = PromotionActivity.class.getSimpleName();
 	
-	private TransactionDao mTrans;
-	private PromotionDiscountDao mPromotion;
-	private GlobalPropertyDao mFormat;
+	private TransactionDataSource mTrans;
+	private PromotionDiscountDataSource mPromotion;
+	private GlobalPropertyDataSource mFormat;
 	private List<OrderDetail> mOrderLst;
 	private List<com.synature.pos.PromotionPriceGroup> mPromoPriceGroupLst;
 	private OrderDiscountAdapter mOrderAdapter;
@@ -58,9 +58,9 @@ public class PromotionActivity extends Activity {
 		mTvTotalPrice = (TextView) findViewById(R.id.tvTotalPrice);
 		mSummaryContainer = (LinearLayout) findViewById(R.id.summaryContainer);
 		
-		mTrans = new TransactionDao(this);
-		mFormat = new GlobalPropertyDao(this);
-		mPromotion = new PromotionDiscountDao(this);
+		mTrans = new TransactionDataSource(this);
+		mFormat = new GlobalPropertyDataSource(this);
+		mPromotion = new PromotionDiscountDataSource(this);
 		
 		Intent intent = getIntent();
 		mTransactionId = intent.getIntExtra("transactionId", 0);
@@ -155,7 +155,7 @@ public class PromotionActivity extends Activity {
 	 */
 	private void resetDiscount(){
 		// reset discount
-		ProductsDao p = new ProductsDao(PromotionActivity.this);
+		ProductsDataSource p = new ProductsDataSource(PromotionActivity.this);
 		for(OrderDetail detail : mOrderLst){
 			double totalRetailPrice = detail.getTotalRetailPrice();
 			double discount = DiscountActivity.calculateDiscount(totalRetailPrice, 
@@ -244,7 +244,7 @@ public class PromotionActivity extends Activity {
 		 */
 		private boolean discount(List<com.synature.pos.PromotionProductDiscount> productLst){
 			boolean canDiscount = false;
-			ProductsDao p = new ProductsDao(PromotionActivity.this);
+			ProductsDataSource p = new ProductsDataSource(PromotionActivity.this);
 			for(OrderDetail detail : mOrderLst){
 				for(com.synature.pos.PromotionProductDiscount product : productLst){
 					if(detail.getProductId() == product.getProductID()){

@@ -1,6 +1,6 @@
 package com.synature.mpos;
 
-import com.synature.mpos.database.GlobalPropertyDao;
+import com.synature.mpos.datasource.GlobalPropertyDataSource;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ public class OrderingKeypadFragment extends Fragment implements OnClickListener{
 
 	public static final String TAG = OrderingKeypadFragment.class.getSimpleName();
 	
-	private GlobalPropertyDao mGlobal;
+	private GlobalPropertyDataSource mGlobal;
 	private StringBuilder mStrVal;
 	private int mTotalQty;
 	
@@ -24,7 +24,7 @@ public class OrderingKeypadFragment extends Fragment implements OnClickListener{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mGlobal = new GlobalPropertyDao(getActivity());
+		mGlobal = new GlobalPropertyDataSource(getActivity());
 		mStrVal = new StringBuilder();
 	}
 

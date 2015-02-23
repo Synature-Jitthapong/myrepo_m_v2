@@ -4,19 +4,19 @@ import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.List;
 
-import com.synature.mpos.database.GlobalPropertyDao;
-import com.synature.mpos.database.MPOSDatabase;
-import com.synature.mpos.database.PaymentDetailDao;
-import com.synature.mpos.database.ProductsDao;
-import com.synature.mpos.database.Reporting;
-import com.synature.mpos.database.SessionDao;
-import com.synature.mpos.database.ShopDao;
-import com.synature.mpos.database.StaffsDao;
-import com.synature.mpos.database.TransactionDao;
-import com.synature.mpos.database.Reporting.SimpleProductData;
-import com.synature.mpos.database.model.MPOSPaymentDetail;
-import com.synature.mpos.database.model.OrderDetail;
-import com.synature.mpos.database.model.OrderTransaction;
+import com.synature.mpos.datasource.GlobalPropertyDataSource;
+import com.synature.mpos.datasource.MPOSDatabase;
+import com.synature.mpos.datasource.PaymentDetailDataSource;
+import com.synature.mpos.datasource.ProductsDataSource;
+import com.synature.mpos.datasource.Reporting;
+import com.synature.mpos.datasource.SessionDataSource;
+import com.synature.mpos.datasource.ShopDataSource;
+import com.synature.mpos.datasource.StaffsDataSource;
+import com.synature.mpos.datasource.TransactionDataSource;
+import com.synature.mpos.datasource.Reporting.SimpleProductData;
+import com.synature.mpos.datasource.model.MPOSPaymentDetail;
+import com.synature.mpos.datasource.model.OrderDetail;
+import com.synature.mpos.datasource.model.OrderTransaction;
 import com.synature.pos.Report;
 import com.synature.pos.Staff;
 
@@ -63,8 +63,8 @@ public class SaleReportActivity extends Activity{
 	public static final int REPORT_BY_PRODUCT = 1;
 	public static final int REPORT_ENDDAY = 2;
 	
-	private ShopDao mShop;
-	private GlobalPropertyDao mFormat;
+	private ShopDataSource mShop;
+	private GlobalPropertyDataSource mFormat;
 	private Reporting mReporting;
 
 	private int mStaffId;
@@ -79,8 +79,8 @@ public class SaleReportActivity extends Activity{
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		setTitle(null);
 		
-		mShop = new ShopDao(this);
-		mFormat = new GlobalPropertyDao(SaleReportActivity.this);
+		mShop = new ShopDataSource(this);
+		mFormat = new GlobalPropertyDataSource(SaleReportActivity.this);
 		mDateFrom = String.valueOf(Utils.getDate().getTimeInMillis());
 		mDateTo = String.valueOf(Utils.getDate().getTimeInMillis());
 
@@ -270,7 +270,7 @@ public class SaleReportActivity extends Activity{
 	public static class PaymentDetailFragment extends DialogFragment{
 		
 		private SaleReportActivity mHost;
-		private PaymentDetailDao mPayment;
+		private PaymentDetailDataSource mPayment;
 		private List<MPOSPaymentDetail> mPaymentLst;
 		private PaymentDetailAdapter mPaymentAdapter;
 		
@@ -291,7 +291,7 @@ public class SaleReportActivity extends Activity{
 			mHost = (SaleReportActivity) getActivity();
 			mTransactionId = getArguments().getInt("transactionId");
 			
-			mPayment = new PaymentDetailDao(getActivity());
+			mPayment = new PaymentDetailDataSource(getActivity());
 			mPaymentLst = mPayment.listPaymentGroupByType(mTransactionId);
 			mPaymentAdapter = new PaymentDetailAdapter();
 			
@@ -363,9 +363,9 @@ public class SaleReportActivity extends Activity{
 		
 		private static SummarySaleReportFragment sInstance;
 		
-		private TransactionDao mTrans;
-		private SessionDao mSession;
-		private PaymentDetailDao mPayment;
+		private TransactionDataSource mTrans;
+		private SessionDataSource mSession;
+		private PaymentDetailDataSource mPayment;
 		private int mSessionId;
 	
 		private LinearLayout mEnddaySumContent;
@@ -383,9 +383,9 @@ public class SaleReportActivity extends Activity{
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			mHost = (SaleReportActivity) getActivity();
-			mTrans = new TransactionDao(getActivity());
-			mSession = new SessionDao(getActivity());
-			mPayment = new PaymentDetailDao(getActivity());
+			mTrans = new TransactionDataSource(getActivity());
+			mSession = new SessionDataSource(getActivity());
+			mPayment = new PaymentDetailDataSource(getActivity());
 			setHasOptionsMenu(true);
 		}
 
@@ -431,10 +431,10 @@ public class SaleReportActivity extends Activity{
 		
 		// setup spinner session
 		private void setupSpSession(){
-			List<com.synature.mpos.database.model.Session> sl = 
+			List<com.synature.mpos.datasource.model.Session> sl =
 					mSession.listSession(mHost.mDateTo);
-			com.synature.mpos.database.model.Session s = 
-					new com.synature.mpos.database.model.Session();
+			com.synature.mpos.datasource.model.Session s =
+					new com.synature.mpos.datasource.model.Session();
 			s.setSessionId(0);
 			s.setSessNumber(getString(R.string.all_session));
 			sl.add(0, s);
@@ -446,8 +446,8 @@ public class SaleReportActivity extends Activity{
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View v,
 					int position, long id) {
-				com.synature.mpos.database.model.Session sess = 
-						(com.synature.mpos.database.model.Session) parent.getItemAtPosition(position);
+				com.synature.mpos.datasource.model.Session sess =
+						(com.synature.mpos.datasource.model.Session) parent.getItemAtPosition(position);
 				mSessionId = sess.getSessionId();
 				createReport();
 			}
@@ -460,9 +460,9 @@ public class SaleReportActivity extends Activity{
 		
 		private class SessionAdapter extends BaseAdapter{
 
-			private List<com.synature.mpos.database.model.Session> mSl;
+			private List<com.synature.mpos.datasource.model.Session> mSl;
 			
-			public SessionAdapter(List<com.synature.mpos.database.model.Session> sl){
+			public SessionAdapter(List<com.synature.mpos.datasource.model.Session> sl){
 				mSl = sl;
 			}
 			
@@ -492,7 +492,7 @@ public class SaleReportActivity extends Activity{
 				}else{
 					holder = (ViewHolder) convertView.getTag();
 				}
-				com.synature.mpos.database.model.Session sess = mSl.get(position);
+				com.synature.mpos.datasource.model.Session sess = mSl.get(position);
 				if(position > 0)
 					sess.setSessNumber(String.valueOf(position));
 				holder.tvSession.setText(sess.getSessNumber());
@@ -506,7 +506,7 @@ public class SaleReportActivity extends Activity{
 		
 		private void createReport(){
 			LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			ShopDao shop = new ShopDao(getActivity());
+			ShopDataSource shop = new ShopDataSource(getActivity());
 			OrderTransaction trans = null;
 			OrderDetail sumOrder = null;
 			sumOrder = mTrans.getSummaryOrder(mSessionId, mHost.mDateTo, mHost.mDateTo);
@@ -525,8 +525,8 @@ public class SaleReportActivity extends Activity{
 			mEnddaySumContent.addView(tvSumTxt);
 			
 			if(mSessionId != 0){
-				com.synature.mpos.database.model.Session s = mSession.getSession(mSessionId);
-				StaffsDao st = new StaffsDao(getActivity());
+				com.synature.mpos.datasource.model.Session s = mSession.getSession(mSessionId);
+				StaffsDataSource st = new StaffsDataSource(getActivity());
 				Staff std = st.getStaff(s.getOpenStaff());
 				if(std != null){
 					View opStView = inflater.inflate(R.layout.left_mid_right_template, null);
@@ -599,7 +599,7 @@ public class SaleReportActivity extends Activity{
 				mEnddaySumContent.addView(grandTotal);
 			}
 			
-			if(shop.getCompanyVatType() == ProductsDao.VAT_TYPE_INCLUDED){
+			if(shop.getCompanyVatType() == ProductsDataSource.VAT_TYPE_INCLUDED){
 				View vatView = inflater.inflate(R.layout.left_mid_right_template, null);
 				((TextView) vatView.findViewById(R.id.tvLeft)).setText(getString(R.string.before_vat));
 				((TextView) vatView.findViewById(R.id.tvRight)).setText(mHost.mFormat.currencyFormat(
@@ -874,7 +874,7 @@ public class SaleReportActivity extends Activity{
 		}
 		
 		private void createHeader(){
-			boolean isExcVat = mHost.mShop.getCompanyVatType() == ProductsDao.VAT_TYPE_EXCLUDE;
+			boolean isExcVat = mHost.mShop.getCompanyVatType() == ProductsDataSource.VAT_TYPE_EXCLUDE;
 			mBillHeader.removeAllViews();
 			TextView[] tvHeaders = {
 					createTextViewHeader(getActivity(), "", Utils.getLinHorParams(0.2f), 0),
@@ -957,7 +957,7 @@ public class SaleReportActivity extends Activity{
 				double totalDiscount = report.getDiscount();
 				double subTotal = report.getSubTotal();
 				double totalPay = report.getTotalPayment();
-				boolean isExcVat = mHost.mShop.getCompanyVatType() == ProductsDao.VAT_TYPE_EXCLUDE;
+				boolean isExcVat = mHost.mShop.getCompanyVatType() == ProductsDataSource.VAT_TYPE_EXCLUDE;
 					
 				LinearLayout container = (LinearLayout) convertView;
 				if(container.getChildCount() > 0)
@@ -965,7 +965,7 @@ public class SaleReportActivity extends Activity{
 				TextView tvBill = createTextViewItem(getActivity(), report.getReceiptNo(), 
 						Utils.getLinHorParams(1f));
 				tvBill.setGravity(Gravity.LEFT);		
-				if(report.getTransStatus() == TransactionDao.TRANS_STATUS_VOID){
+				if(report.getTransStatus() == TransactionDataSource.TRANS_STATUS_VOID){
 					tvBill.setTextColor(Color.RED);
 					tvBill.setPaintFlags(tvBill.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 				}else{
@@ -1034,7 +1034,7 @@ public class SaleReportActivity extends Activity{
 		}
 		
 		private void summaryBill(){
-			boolean isExcVat = mHost.mShop.getCompanyVatType() == ProductsDao.VAT_TYPE_EXCLUDE;
+			boolean isExcVat = mHost.mShop.getCompanyVatType() == ProductsDataSource.VAT_TYPE_EXCLUDE;
 			Report.ReportDetail summary = mHost.mReporting.getBillSummary();
 			mBillSumContent.removeAllViews();
 			TextView[] tvSummary = {
@@ -1396,11 +1396,11 @@ public class SaleReportActivity extends Activity{
 			mProductSumContent.removeAllViews();
 			mProductSumContent.addView(createRowSummary(getActivity(), tvGrandTotal));
 			
-			TransactionDao trans = new TransactionDao(getActivity());
+			TransactionDataSource trans = new TransactionDataSource(getActivity());
 			OrderTransaction sumTrans = trans.getSummaryTransaction(mHost.mDateFrom, mHost.mDateTo);
 			
 			if(sumTrans.getTransactionVatExclude() > 0){
-				ShopDao shop = new ShopDao(getActivity());
+				ShopDataSource shop = new ShopDataSource(getActivity());
 				// total vatExclude
 				TextView[] tvTotalVatExclude = {
 						createTextViewSummary(getActivity(), getString(R.string.vat_exclude) + " " +

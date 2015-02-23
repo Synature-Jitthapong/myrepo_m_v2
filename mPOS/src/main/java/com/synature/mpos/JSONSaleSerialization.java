@@ -6,9 +6,9 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.synature.mpos.database.SaleTransaction;
-import com.synature.mpos.database.SaleTransaction.POSData_EndDaySaleTransaction;
-import com.synature.mpos.database.SaleTransaction.POSData_SaleTransaction;
+import com.synature.mpos.datasource.SaleTransaction;
+import com.synature.mpos.datasource.SaleTransaction.POSData_EndDaySaleTransaction;
+import com.synature.mpos.datasource.SaleTransaction.POSData_SaleTransaction;
 import com.synature.util.Logger;
 
 public class JSONSaleSerialization{

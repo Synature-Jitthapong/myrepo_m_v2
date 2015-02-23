@@ -2,18 +2,13 @@ package com.synature.mpos;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import com.synature.mpos.database.MPOSDatabase;
-import com.synature.mpos.database.SaleTransaction;
-import com.synature.mpos.database.TransactionDao;
-import com.synature.mpos.database.table.ComputerTable;
-import com.synature.mpos.database.table.OrderDetailTable;
-import com.synature.mpos.database.table.OrderTransTable;
-import com.synature.mpos.database.table.PaymentDetailTable;
-import com.synature.mpos.database.table.ProductComponentGroupTable;
-import com.synature.mpos.database.table.ProductComponentTable;
-import com.synature.mpos.database.table.ProductGroupTable;
-import com.synature.mpos.database.table.ProductTable;
-import com.synature.pos.PComponentGroup;
+import com.synature.mpos.datasource.MPOSDatabase;
+import com.synature.mpos.datasource.SaleTransaction;
+import com.synature.mpos.datasource.table.ComputerTable;
+import com.synature.mpos.datasource.table.OrderDetailTable;
+import com.synature.mpos.datasource.table.OrderTransTable;
+import com.synature.mpos.datasource.table.PaymentDetailTable;
+import com.synature.mpos.datasource.table.ProductTable;
 import com.synature.pos.WebServiceResult;
 
 import android.content.ContentValues;

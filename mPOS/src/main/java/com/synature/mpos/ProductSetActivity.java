@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.synature.mpos.database.GlobalPropertyDao;
-import com.synature.mpos.database.ProductsDao;
-import com.synature.mpos.database.TransactionDao;
-import com.synature.mpos.database.model.OrderSet;
-import com.synature.mpos.database.model.OrderSet.OrderSetDetail;
-import com.synature.mpos.database.model.Product;
-import com.synature.mpos.database.model.ProductComponent;
-import com.synature.mpos.database.model.ProductComponentGroup;
+import com.synature.mpos.datasource.GlobalPropertyDataSource;
+import com.synature.mpos.datasource.ProductsDataSource;
+import com.synature.mpos.datasource.TransactionDataSource;
+import com.synature.mpos.datasource.model.OrderSet;
+import com.synature.mpos.datasource.model.OrderSet.OrderSetDetail;
+import com.synature.mpos.datasource.model.Product;
+import com.synature.mpos.datasource.model.ProductComponent;
+import com.synature.mpos.datasource.model.ProductComponentGroup;
 import com.synature.util.ImageLoader;
 
 import android.annotation.SuppressLint;
@@ -49,10 +49,10 @@ public class ProductSetActivity extends Activity{
 	
 	public static final String ADD_MODE = "add";
 	
-	private ProductsDao mProduct;
-	private GlobalPropertyDao mFormat;
+	private ProductsDataSource mProduct;
+	private GlobalPropertyDataSource mFormat;
 	
-	private TransactionDao mTrans;
+	private TransactionDataSource mTrans;
 	
 	private int mTransactionId;
 	private int mComputerId;
@@ -78,9 +78,9 @@ public class ProductSetActivity extends Activity{
 		mGvSetItem = (GridView) findViewById(R.id.gvSetItem);
 		mScroll = (HorizontalScrollView) findViewById(R.id.horizontalScrollView1);
 		
-		mProduct = new ProductsDao(ProductSetActivity.this);
-		mFormat = new GlobalPropertyDao(ProductSetActivity.this);
-		mTrans = new TransactionDao(ProductSetActivity.this);
+		mProduct = new ProductsDataSource(ProductSetActivity.this);
+		mFormat = new GlobalPropertyDataSource(ProductSetActivity.this);
+		mTrans = new TransactionDataSource(ProductSetActivity.this);
 		mTrans.getWritableDatabase().beginTransaction();
 		
 		Intent intent = getIntent();
@@ -748,7 +748,7 @@ public class ProductSetActivity extends Activity{
 			if(totalQty < requireAmount){
 				if(deductQty <= requireAmount - totalQty){
 					orderSetId = mTrans.addOrderSet(mTransactionId, mComputerId, mOrderDetailId, productId, 
-							ProductsDao.CHILD_OF_SET_HAVE_PRICE, deductQty, price, pCompGroupId, requireAmount, requireMinAmount);
+							ProductsDataSource.CHILD_OF_SET_HAVE_PRICE, deductQty, price, pCompGroupId, requireAmount, requireMinAmount);
 				}else{
 					new AlertDialog.Builder(ProductSetActivity.this)
 					.setTitle(groupName)
@@ -770,7 +770,7 @@ public class ProductSetActivity extends Activity{
 			}
 		}else{
 			orderSetId = mTrans.addOrderSet(mTransactionId, mComputerId, mOrderDetailId, productId, 
-					ProductsDao.CHILD_OF_SET_HAVE_PRICE, deductQty, price, pCompGroupId, requireAmount, requireMinAmount);
+					ProductsDataSource.CHILD_OF_SET_HAVE_PRICE, deductQty, price, pCompGroupId, requireAmount, requireMinAmount);
 		}
 		return orderSetId;
 	}

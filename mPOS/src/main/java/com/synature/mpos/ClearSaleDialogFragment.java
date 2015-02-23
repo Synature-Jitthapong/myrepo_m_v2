@@ -3,8 +3,8 @@ package com.synature.mpos;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-import com.synature.mpos.database.GlobalPropertyDao;
-import com.synature.mpos.database.TransactionDao;
+import com.synature.mpos.datasource.GlobalPropertyDataSource;
+import com.synature.mpos.datasource.TransactionDataSource;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -23,7 +23,7 @@ public class ClearSaleDialogFragment extends DialogFragment implements OnClickLi
 	public static final String TAG = ClearSaleDialogFragment.class.getSimpleName();
 	public static final String PASS = "mposclear";
 	
-	private GlobalPropertyDao mGlobal;
+	private GlobalPropertyDataSource mGlobal;
 	private long mDateFrom;
 	private long mDateTo;
 	
@@ -35,7 +35,7 @@ public class ClearSaleDialogFragment extends DialogFragment implements OnClickLi
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mGlobal = new GlobalPropertyDao(getActivity());
+		mGlobal = new GlobalPropertyDataSource(getActivity());
 	}
 	
 	@Override
@@ -167,7 +167,7 @@ public class ClearSaleDialogFragment extends DialogFragment implements OnClickLi
 	}
 	
 	private void clearSale(){
-		TransactionDao trans = new TransactionDao(getActivity());
+		TransactionDataSource trans = new TransactionDataSource(getActivity());
 		trans.deleteAllSale(String.valueOf(mDateFrom), String.valueOf(mDateTo));
 		createAlertDialog(getString(R.string.clear_sale_data), "Clear sale data success.");
 	}

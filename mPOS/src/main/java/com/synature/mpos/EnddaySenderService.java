@@ -3,9 +3,9 @@ package com.synature.mpos;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.synature.mpos.database.MPOSDatabase;
-import com.synature.mpos.database.SessionDao;
-import com.synature.mpos.database.TransactionDao;
+import com.synature.mpos.datasource.MPOSDatabase;
+import com.synature.mpos.datasource.SessionDataSource;
+import com.synature.mpos.datasource.TransactionDataSource;
 import com.synature.util.Logger;
 
 import android.content.Intent;
@@ -211,8 +211,8 @@ public class EnddaySenderService extends SaleSenderServiceBase{
 	 * @param status
 	 */
 	private void flagSendStatus(String sessionDate, int status){
-		SessionDao session = new SessionDao(getApplicationContext());
-		TransactionDao trans = new TransactionDao(getApplicationContext());
+		SessionDataSource session = new SessionDataSource(getApplicationContext());
+		TransactionDataSource trans = new TransactionDataSource(getApplicationContext());
 		
 		session.updateSessionEnddayDetail(sessionDate, status);
 		trans.updateTransactionSendStatus(sessionDate, status);

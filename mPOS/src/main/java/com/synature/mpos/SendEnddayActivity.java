@@ -3,9 +3,9 @@ package com.synature.mpos;
 import java.util.Calendar;
 import java.util.List;
 
-import com.synature.mpos.database.GlobalPropertyDao;
-import com.synature.mpos.database.SessionDao;
-import com.synature.mpos.database.model.Session;
+import com.synature.mpos.datasource.GlobalPropertyDataSource;
+import com.synature.mpos.datasource.SessionDataSource;
+import com.synature.mpos.datasource.model.Session;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -28,17 +28,16 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class SendEnddayActivity extends Activity {
 
-	private GlobalPropertyDao mFormat;
+	private GlobalPropertyDataSource mFormat;
 	
 	private int mStaffId;
 	private int mShopId;
 	private int mComputerId;
 	
-	private SessionDao mSession;
+	private SessionDataSource mSession;
 	private List<Session> mSessLst;
 	private EnddayListAdapter mEnddayAdapter;
 	
@@ -67,8 +66,8 @@ public class SendEnddayActivity extends Activity {
 		mShopId = intent.getIntExtra("shopId", 0);
 		mComputerId = intent.getIntExtra("computerId", 0);
 		
-		mFormat = new GlobalPropertyDao(this);
-		mSession = new SessionDao(this);
+		mFormat = new GlobalPropertyDataSource(this);
+		mSession = new SessionDataSource(this);
 		setupAdapter();
 	}
 

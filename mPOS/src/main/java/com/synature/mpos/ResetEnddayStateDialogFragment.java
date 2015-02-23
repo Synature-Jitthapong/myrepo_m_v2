@@ -2,8 +2,8 @@ package com.synature.mpos;
 
 import java.util.Calendar;
 
-import com.synature.mpos.database.GlobalPropertyDao;
-import com.synature.mpos.database.SessionDao;
+import com.synature.mpos.datasource.GlobalPropertyDataSource;
+import com.synature.mpos.datasource.SessionDataSource;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -30,8 +30,8 @@ public class ResetEnddayStateDialogFragment extends DialogFragment{
 	
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
-		GlobalPropertyDao global = new GlobalPropertyDao(getActivity());
-		final SessionDao sess = new SessionDao(getActivity());
+		GlobalPropertyDataSource global = new GlobalPropertyDataSource(getActivity());
+		final SessionDataSource sess = new SessionDataSource(getActivity());
 		final String currSaleDate = global.dateFormat(Calendar.getInstance().getTime());
 		final String now = String.valueOf(Utils.getDate().getTimeInMillis());
 		mIsEndday = sess.checkEndday(now);

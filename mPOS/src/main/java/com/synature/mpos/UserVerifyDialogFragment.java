@@ -1,7 +1,7 @@
 package com.synature.mpos;
 
-import com.synature.mpos.database.StaffsDao;
-import com.synature.mpos.database.UserVerification;
+import com.synature.mpos.datasource.StaffsDataSource;
+import com.synature.mpos.datasource.UserVerification;
 import com.synature.pos.Staff;
 
 import android.app.Activity;
@@ -102,29 +102,29 @@ public class UserVerifyDialogFragment extends DialogFragment{
 								Staff s = verify.checkLogin();
 								if(s != null){
 									mTvMsg.setVisibility(View.GONE);
-									StaffsDao st = new StaffsDao(getActivity());
+									StaffsDataSource st = new StaffsDataSource(getActivity());
 									switch(mPermissionId){
-									case StaffsDao.VOID_PERMISSION:
+									case StaffsDataSource.VOID_PERMISSION:
 										if(st.checkVoidPermission(s.getStaffRoleID())){
 											d.dismiss();
-											mListener.onAllow(s.getStaffID(), StaffsDao.VOID_PERMISSION);
+											mListener.onAllow(s.getStaffID(), StaffsDataSource.VOID_PERMISSION);
 										}else{
 											mTvMsg.setVisibility(View.VISIBLE);
 											mTvMsg.setText(R.string.not_have_permission_to_void);
 										}
 										break;
-									case StaffsDao.OTHER_DISCOUNT_PERMISSION:
+									case StaffsDataSource.OTHER_DISCOUNT_PERMISSION:
 										if(st.checkOtherDiscountPermission(s.getStaffRoleID())){
 											d.dismiss();
-											mListener.onAllow(s.getStaffID(), StaffsDao.OTHER_DISCOUNT_PERMISSION);
+											mListener.onAllow(s.getStaffID(), StaffsDataSource.OTHER_DISCOUNT_PERMISSION);
 										}else{
 											mTvMsg.setVisibility(View.VISIBLE);
 											mTvMsg.setText(R.string.not_have_permission_to_other_discount);
 										}
 										break;
-									case StaffsDao.VIEW_REPORT_PERMISSION:
+									case StaffsDataSource.VIEW_REPORT_PERMISSION:
 										d.dismiss();
-										mListener.onAllow(s.getStaffID(), StaffsDao.VIEW_REPORT_PERMISSION);
+										mListener.onAllow(s.getStaffID(), StaffsDataSource.VIEW_REPORT_PERMISSION);
 										break;
 									}
 								}else{

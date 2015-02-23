@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m/mPOS/src/main/res/values/array.xml -->
+    <!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m_v2/mPOS/src/main/res/values/array.xml -->
     <eat-comment/>
     <string-array name="baudrates_name">
         <item>9600</item>
@@ -78,7 +78,7 @@
         <item>TM-T88V</item>
         <item>@string/tm_t88v</item>
     </string-array>
-    <!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m/mPOS/src/main/res/values/colors.xml -->
+    <!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m_v2/mPOS/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="blue">#2196F3</color>
     <color name="blue_gray_light">#ffEFF4F4</color>
@@ -95,7 +95,7 @@
     <color name="orange">#FF5722</color>
     <color name="teal">#009688</color>
     <color name="white_gray">#fffafafa</color>
-    <!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m/mPOS/src/main/res/values/dimens.xml -->
+    <!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m_v2/mPOS/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="activity_horizontal_margin">4dp</dimen>
     <dimen name="activity_vertical_margin">4dp</dimen>
@@ -106,12 +106,12 @@
     <dimen name="list_item_min_height">48dp</dimen>
     <dimen name="menu_text_large">22sp</dimen>
     <dimen name="min_margin">3dp</dimen>
-    <!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m/mPOS/src/main/res/values/integers.xml -->
+    <!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m_v2/mPOS/src/main/res/values/integers.xml -->
     <eat-comment/>
     <integer name="activity_dialog_height">390</integer>
     <integer name="large_text_size">32</integer>
     <integer name="larger_text_size">48</integer>
-    <!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m/mPOS/src/main/res/values/strings.xml -->
+    <!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m_v2/mPOS/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="about">About MPOS</string>
     <string name="action_settings">Settings</string>
@@ -396,7 +396,7 @@ Tel: +66(0)-2-530-3835-6 Fax: +66(0)-2-530-3092\n E-mail: info@synaturegroup.com
     <string name="wintec_magnetic_reader_settings">mPOS Magnetic Reader Settings</string>
     <string name="wintec_setting">mPOS Settings</string>
     <string name="yes">Yes</string>
-    <!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m/mPOS/src/main/res/values/styles.xml -->
+    <!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m_v2/mPOS/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="ActivityDialogTheme" parent="android:Theme.Holo.Light.Dialog">
         <item name="android:windowIsFloating">false</item>

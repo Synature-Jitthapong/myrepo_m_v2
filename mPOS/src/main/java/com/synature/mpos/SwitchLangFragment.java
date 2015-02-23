@@ -2,8 +2,8 @@ package com.synature.mpos;
 
 import java.util.List;
 
-import com.synature.mpos.database.LanguageDao;
-import com.synature.mpos.database.model.Language;
+import com.synature.mpos.datasource.LanguageDataSource;
+import com.synature.mpos.datasource.model.Language;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -25,7 +25,7 @@ import android.widget.Spinner;
 
 public class SwitchLangFragment extends DialogFragment{
 
-	private LanguageDao mLangDao;
+	private LanguageDataSource mLangDao;
 	private List<Language> mLangLst;
 	private LanguageAdapter mLangAdapter;
 	
@@ -41,7 +41,7 @@ public class SwitchLangFragment extends DialogFragment{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mLangDao = new LanguageDao(getActivity());
+		mLangDao = new LanguageDataSource(getActivity());
 	}
 
 	@Override

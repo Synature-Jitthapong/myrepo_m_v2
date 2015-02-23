@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.synature.mpos.database.GlobalPropertyDao;
-import com.synature.mpos.database.ProductsDao;
-import com.synature.mpos.database.TransactionDao;
-import com.synature.mpos.database.model.OrderDetail;
+import com.synature.mpos.datasource.GlobalPropertyDataSource;
+import com.synature.mpos.datasource.ProductsDataSource;
+import com.synature.mpos.datasource.TransactionDataSource;
+import com.synature.mpos.datasource.model.OrderDetail;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -51,9 +51,9 @@ public class DiscountActivity extends Activity implements OnItemClickListener,
 	public static final int PERCENT_DISCOUNT_TYPE = 2;
 	public static final int OTHER_DISCOUNT_TYPE = 6;
 
-	private GlobalPropertyDao mFormat;
-	private TransactionDao mTrans;
-	private ProductsDao mProduct;
+	private GlobalPropertyDataSource mFormat;
+	private TransactionDataSource mTrans;
+	private ProductsDataSource mProduct;
 	private OrderDetail mOrder;
 	private DiscountAdapter mDisAdapter;
 	private List<OrderDetail> mOrderLst;
@@ -82,9 +82,9 @@ public class DiscountActivity extends Activity implements OnItemClickListener,
 
 		Intent intent = getIntent();
 		mTransactionId = intent.getIntExtra("transactionId", 0);	
-		mTrans = new TransactionDao(this);
-		mProduct = new ProductsDao(this);
-		mFormat = new GlobalPropertyDao(this);
+		mTrans = new TransactionDataSource(this);
+		mProduct = new ProductsDataSource(this);
+		mFormat = new GlobalPropertyDataSource(this);
 		mOrder = new OrderDetail();
 		// begin transaction
 		mTrans.getWritableDatabase().beginTransaction();
@@ -286,7 +286,7 @@ public class DiscountActivity extends Activity implements OnItemClickListener,
 			// clear discount first
 			clearDiscount();
 			try {
-				ProductsDao product = new ProductsDao(this);
+				ProductsDataSource product = new ProductsDataSource(this);
 				double discountAll = Utils.stringToDouble(mTxtDisAll.getText().toString());
 				double maxTotalRetailPrice = mTrans.getMaxTotalRetailPrice(mTransactionId);
 				double totalDiscount = 0.0d;
@@ -506,7 +506,7 @@ public class DiscountActivity extends Activity implements OnItemClickListener,
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		OrderDetail order = (OrderDetail) parent.getItemAtPosition(position);
 		
-		ProductsDao p = new ProductsDao(this);
+		ProductsDataSource p = new ProductsDataSource(this);
 		if(p.isAllowDiscount(order.getProductId())){
 			mPosition = position;
 			mOrder = order;

@@ -2,12 +2,12 @@ package com.synature.mpos;
 
 import java.util.List;
 
-import com.synature.mpos.database.GlobalPropertyDao;
-import com.synature.mpos.database.MenuCommentDao;
-import com.synature.mpos.database.ProductsDao;
-import com.synature.mpos.database.TransactionDao;
-import com.synature.mpos.database.model.Comment;
-import com.synature.mpos.database.model.CommentGroup;
+import com.synature.mpos.datasource.GlobalPropertyDataSource;
+import com.synature.mpos.datasource.MenuCommentDataSource;
+import com.synature.mpos.datasource.ProductsDataSource;
+import com.synature.mpos.datasource.TransactionDataSource;
+import com.synature.mpos.datasource.model.Comment;
+import com.synature.mpos.datasource.model.CommentGroup;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -50,9 +50,9 @@ public class MenuCommentDialogFragment extends DialogFragment{
 	private String mMenuName;
 	private String mOrderComment;
 	
-	private GlobalPropertyDao mFormat;
-	private TransactionDao mTrans;
-	private MenuCommentDao mComment;
+	private GlobalPropertyDataSource mFormat;
+	private TransactionDataSource mTrans;
+	private MenuCommentDataSource mComment;
 	private List<CommentGroup> mCommentGroupLst;
 	private List<Comment> mCommentLst;
 	private MenuCommentAdapter mCommentAdapter;
@@ -95,9 +95,9 @@ public class MenuCommentDialogFragment extends DialogFragment{
 		mMenuName = getArguments().getString("menuName");
 		mOrderComment = getArguments().getString("orderComment");
 		
-		mFormat = new GlobalPropertyDao(getActivity());
-		mTrans = new TransactionDao(getActivity());
-		mComment = new MenuCommentDao(getActivity());
+		mFormat = new GlobalPropertyDataSource(getActivity());
+		mTrans = new TransactionDataSource(getActivity());
+		mComment = new MenuCommentDataSource(getActivity());
 		mCommentLst = mComment.listMenuComment();
 		mCommentGroupLst = mComment.listMenuCommentGroup();
 		CommentGroup commentGroup = new CommentGroup();
@@ -320,7 +320,7 @@ public class MenuCommentDialogFragment extends DialogFragment{
 					mTrans.deleteOrderComment(mTransactionId, mOrderDetailId, mComment.getCommentId());
 				}else{
 					double price = mComment.getCommentPrice() < 0 ? 0 : mComment.getCommentPrice();
-					int proTypeId = price > 0 ? ProductsDao.COMMENT_HAVE_PRICE : ProductsDao.COMMENT_NOT_HAVE_PRICE;
+					int proTypeId = price > 0 ? ProductsDataSource.COMMENT_HAVE_PRICE : ProductsDataSource.COMMENT_NOT_HAVE_PRICE;
 					mComment.setSelected(true);
 					mTrans.addOrderComment(mTransactionId, mComputerId, mOrderDetailId, mComment.getCommentId(), 
 							proTypeId, 1, price);

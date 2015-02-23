@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import com.synature.mpos.database.ComputerDao;
-import com.synature.mpos.database.GlobalPropertyDao;
-import com.synature.mpos.database.PaymentDetailDao;
-import com.synature.mpos.database.PrintReceiptLogDao;
-import com.synature.mpos.database.SessionDao;
-import com.synature.mpos.database.TransactionDao;
-import com.synature.mpos.database.model.OrderTransaction;
+import com.synature.mpos.datasource.ComputerDataSource;
+import com.synature.mpos.datasource.GlobalPropertyDataSource;
+import com.synature.mpos.datasource.PaymentDetailDataSource;
+import com.synature.mpos.datasource.PrintReceiptLogDataSource;
+import com.synature.mpos.datasource.SessionDataSource;
+import com.synature.mpos.datasource.TransactionDataSource;
+import com.synature.mpos.datasource.model.OrderTransaction;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -45,8 +45,8 @@ import android.widget.TextView;
 
 public class VoidBillActivity extends Activity {
 	
-	private TransactionDao mTrans;
-	private GlobalPropertyDao mFormat;
+	private TransactionDataSource mTrans;
+	private GlobalPropertyDataSource mFormat;
 	
 	private List<OrderTransaction> mTransLst;
 	private BillAdapter mBillAdapter;
@@ -75,8 +75,8 @@ public class VoidBillActivity extends Activity {
 	    btnSearch = (Button) findViewById(R.id.btnSearch);
 	    mScrBill = (ScrollView) findViewById(R.id.scrollView1);
 
-		mTrans = new TransactionDao(getApplicationContext());
-		mFormat = new GlobalPropertyDao(getApplicationContext());
+		mTrans = new TransactionDataSource(getApplicationContext());
+		mFormat = new GlobalPropertyDataSource(getApplicationContext());
 		mTransLst = new ArrayList<OrderTransaction>();
 		mBillAdapter = new BillAdapter();
 		mLvBill.setAdapter(mBillAdapter);
@@ -105,14 +105,14 @@ public class VoidBillActivity extends Activity {
 				mComputerId = trans.getComputerId();
 				
 				if(mVoidType == 1){
-					if(trans.getTransactionStatusId() == TransactionDao.TRANS_STATUS_SUCCESS)
+					if(trans.getTransactionStatusId() == TransactionDataSource.TRANS_STATUS_SUCCESS)
 						mItemConfirm.setEnabled(true);
-					else if(trans.getTransactionStatusId() == TransactionDao.TRANS_STATUS_VOID)
+					else if(trans.getTransactionStatusId() == TransactionDataSource.TRANS_STATUS_VOID)
 						mItemConfirm.setEnabled(false);
 				}else if (mVoidType == 2){
-					if(trans.getTransactionStatusId() == TransactionDao.WASTE_TRANS_STATUS_SUCCESS)
+					if(trans.getTransactionStatusId() == TransactionDataSource.WASTE_TRANS_STATUS_SUCCESS)
 						mItemConfirm.setEnabled(true);
-					else if(trans.getTransactionStatusId() == TransactionDao.WASTE_TRANS_STATUS_VOID)
+					else if(trans.getTransactionStatusId() == TransactionDataSource.WASTE_TRANS_STATUS_VOID)
 						mItemConfirm.setEnabled(false);
 				}
 				searchVoidItem();
@@ -150,7 +150,7 @@ public class VoidBillActivity extends Activity {
 	}
 	
 	private void setupSearchSpinner(){
-		PaymentDetailDao payment = new PaymentDetailDao(this);
+		PaymentDetailDataSource payment = new PaymentDetailDataSource(this);
 		if(payment.countPayTypeWaste() > 0){
 			String[] voidTypes = getResources().getStringArray(R.array.bill_type);
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
@@ -227,8 +227,8 @@ public class VoidBillActivity extends Activity {
 			}
 			holder.tvReceiptNo.setText(trans.getReceiptNo());
 			holder.tvPaidTime.setText(mFormat.dateTimeFormat(c.getTime()));
-			if((trans.getTransactionStatusId() == TransactionDao.TRANS_STATUS_VOID)
-					|| (trans.getTransactionStatusId() == TransactionDao.WASTE_TRANS_STATUS_VOID)){
+			if((trans.getTransactionStatusId() == TransactionDataSource.TRANS_STATUS_VOID)
+					|| (trans.getTransactionStatusId() == TransactionDataSource.WASTE_TRANS_STATUS_VOID)){
 				holder.tvReceiptNo.setTextColor(Color.RED);
 				holder.tvReceiptNo.setPaintFlags(holder.tvReceiptNo.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 			}else{
@@ -273,14 +273,14 @@ public class VoidBillActivity extends Activity {
 		}
 		if(ordTrans != null){
 			if(mVoidType == 1){
-				if(ordTrans.getTransactionStatusId() == TransactionDao.TRANS_STATUS_SUCCESS)
+				if(ordTrans.getTransactionStatusId() == TransactionDataSource.TRANS_STATUS_SUCCESS)
 					((CustomFontTextView) mScrBill.findViewById(R.id.textView1)).setText(ordTrans.getEj());
-				else if(ordTrans.getTransactionStatusId() == TransactionDao.TRANS_STATUS_VOID)
+				else if(ordTrans.getTransactionStatusId() == TransactionDataSource.TRANS_STATUS_VOID)
 					((CustomFontTextView) mScrBill.findViewById(R.id.textView1)).setText(ordTrans.getEjVoid());
 			}else if(mVoidType == 2){
-				if(ordTrans.getTransactionStatusId() == TransactionDao.WASTE_TRANS_STATUS_SUCCESS)
+				if(ordTrans.getTransactionStatusId() == TransactionDataSource.WASTE_TRANS_STATUS_SUCCESS)
 					((CustomFontTextView) mScrBill.findViewById(R.id.textView1)).setText(ordTrans.getEj());
-				else if(ordTrans.getTransactionStatusId() == TransactionDao.WASTE_TRANS_STATUS_VOID)
+				else if(ordTrans.getTransactionStatusId() == TransactionDataSource.WASTE_TRANS_STATUS_VOID)
 					((CustomFontTextView) mScrBill.findViewById(R.id.textView1)).setText(ordTrans.getEjVoid());
 			}
 		}
@@ -341,9 +341,9 @@ public class VoidBillActivity extends Activity {
 	}
 	
 	private void printReceipt(){
-		PrintReceiptLogDao printLog = 
-				new PrintReceiptLogDao(this);
-		ComputerDao comp = new ComputerDao(this);
+		PrintReceiptLogDataSource printLog =
+				new PrintReceiptLogDataSource(this);
+		ComputerDataSource comp = new ComputerDataSource(this);
 		int isCopy = 0;
 		for(int i = 0; i < comp.getReceiptHasCopy(); i++){
 			if(i > 0)
@@ -366,7 +366,7 @@ public class VoidBillActivity extends Activity {
 				
 				@Override
 				public void onPostPrint() {
-					SessionDao session = new SessionDao(VoidBillActivity.this);
+					SessionDataSource session = new SessionDataSource(VoidBillActivity.this);
 					Intent intent = new Intent(VoidBillActivity.this, SaleSenderService.class);
 					intent.putExtra(SaleSenderService.WHAT_TO_DO_PARAM, SaleSenderService.SEND_PARTIAL);
 					intent.putExtra(SaleSenderService.SESSION_DATE_PARAM, session.getLastSessionDate());

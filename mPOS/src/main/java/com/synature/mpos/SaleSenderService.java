@@ -3,8 +3,8 @@ package com.synature.mpos;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.synature.mpos.database.MPOSDatabase;
-import com.synature.mpos.database.TransactionDao;
+import com.synature.mpos.datasource.MPOSDatabase;
+import com.synature.mpos.datasource.TransactionDataSource;
 import com.synature.util.Logger;
 
 import android.content.Intent;
@@ -245,7 +245,7 @@ public class SaleSenderService extends SaleSenderServiceBase{
 	 * @param status
 	 */
 	private void flagSendStatus(String sessionDate, int status){
-		TransactionDao trans = new TransactionDao(getApplicationContext());
+		TransactionDataSource trans = new TransactionDataSource(getApplicationContext());
 		trans.updateTransactionSendStatus(sessionDate, status);
 		trans.updateTransactionWasteSendStatus(sessionDate, status);
 	}
@@ -255,7 +255,7 @@ public class SaleSenderService extends SaleSenderServiceBase{
 	 * @param status
 	 */
 	private void flagSendStatus(int transactionId, int status){
-		TransactionDao trans = new TransactionDao(getApplicationContext());
+		TransactionDataSource trans = new TransactionDataSource(getApplicationContext());
 		trans.updateTransactionSendStatus(transactionId, status);
 		trans.updateTransactionWasteSendStatus(transactionId, status);
 	}

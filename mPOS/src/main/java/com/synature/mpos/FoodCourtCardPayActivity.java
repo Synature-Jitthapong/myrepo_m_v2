@@ -1,9 +1,9 @@
 package com.synature.mpos;
 
-import com.synature.mpos.database.GlobalPropertyDao;
-import com.synature.mpos.database.ShopDao;
-import com.synature.mpos.database.TransactionDao;
-import com.synature.mpos.database.model.OrderDetail;
+import com.synature.mpos.datasource.GlobalPropertyDataSource;
+import com.synature.mpos.datasource.ShopDataSource;
+import com.synature.mpos.datasource.TransactionDataSource;
+import com.synature.mpos.datasource.model.OrderDetail;
 import com.synature.pos.PrepaidCardInfo;
 import com.synature.util.CreditCardParser;
 import com.synature.util.Logger;
@@ -54,8 +54,8 @@ public class FoodCourtCardPayActivity extends Activity implements Runnable{
 
 	private WintecMagneticReader mMsrReader;
 	
-	private TransactionDao mTrans;
-	private GlobalPropertyDao mFormat;
+	private TransactionDataSource mTrans;
+	private GlobalPropertyDataSource mFormat;
 	
 	private int mTransactionId;
 	private int mShopId;
@@ -86,8 +86,8 @@ public class FoodCourtCardPayActivity extends Activity implements Runnable{
 		mShopId = intent.getIntExtra("shopId", 0);
 		mComputerId = intent.getIntExtra("computerId", 0);
 		mStaffId = intent.getIntExtra("staffId", 0);
-		mTrans = new TransactionDao(this);
-		mFormat = new GlobalPropertyDao(this);
+		mTrans = new TransactionDataSource(this);
+		mFormat = new GlobalPropertyDataSource(this);
 		
 		if(savedInstanceState == null){
 			getFragmentManager().beginTransaction().add(R.id.container, new PlaceholderFragment(), "Placeholder").commit();
@@ -374,7 +374,7 @@ public class FoodCourtCardPayActivity extends Activity implements Runnable{
 				PayResultFragment fragment = PayResultFragment.newInstance(mCardBalance);
 				getFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
 				
-				ShopDao shop = new ShopDao(FoodCourtCardPayActivity.this);
+				ShopDataSource shop = new ShopDataSource(FoodCourtCardPayActivity.this);
 				mTrans.closeTransaction(mTransactionId, mStaffId, mTotalSalePrice);
 				new PrintReceiptFoodCourtTask().execute();
 			}

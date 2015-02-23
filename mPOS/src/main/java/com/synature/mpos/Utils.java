@@ -34,10 +34,10 @@ import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.synature.mpos.database.GlobalPropertyDao;
-import com.synature.mpos.database.ProductsDao;
-import com.synature.mpos.database.SessionDao;
-import com.synature.mpos.database.TransactionDao;
+import com.synature.mpos.datasource.GlobalPropertyDataSource;
+import com.synature.mpos.datasource.ProductsDataSource;
+import com.synature.mpos.datasource.SessionDataSource;
+import com.synature.mpos.datasource.TransactionDataSource;
 import com.synature.util.Logger;
 
 @SuppressLint("ShowToast")
@@ -57,11 +57,11 @@ public class Utils {
 			int computerId, int staffId, Calendar lastSessCal){
 		int diffDay = getDiffDay(lastSessCal);
 		try {
-			SessionDao sess = new SessionDao(context);
+			SessionDataSource sess = new SessionDataSource(context);
 			// if have some previous session does not end
 			String prevSessDate = String.valueOf(lastSessCal.getTimeInMillis());
 			if(!sess.checkEndday(prevSessDate)){
-				TransactionDao trans = new TransactionDao(context);
+				TransactionDataSource trans = new TransactionDataSource(context);
 				int prevSessId = sess.getLastSessionId();
 				sess.addSessionEnddayDetail(prevSessDate, 
 						trans.getTotalReceipt(0, prevSessDate), 
@@ -76,7 +76,7 @@ public class Utils {
 				sess.closeSession(sessId, staffId, 0, true);
 			}
 			try {
-				GlobalPropertyDao format = new GlobalPropertyDao(context);
+				GlobalPropertyDataSource format = new GlobalPropertyDataSource(context);
 				Logger.appendLog(context, MPOSApplication.LOG_PATH,
 						MPOSApplication.LOG_FILE_NAME,
 						"Success ending multiple day : " 
@@ -140,9 +140,9 @@ public class Utils {
 	}
 	
 	public static double calculateVatAmount(double totalPrice, double vatRate, int vatType){
-		if(vatType == ProductsDao.VAT_TYPE_INCLUDED)
+		if(vatType == ProductsDataSource.VAT_TYPE_INCLUDED)
 			return totalPrice * vatRate / (100 + vatRate);
-		else if(vatType == ProductsDao.VAT_TYPE_EXCLUDE)
+		else if(vatType == ProductsDataSource.VAT_TYPE_EXCLUDE)
 			return totalPrice * vatRate / 100;
 		else
 			return 0;
@@ -153,7 +153,7 @@ public class Utils {
 	 * @param value
 	 * @return string fixes digit
 	 */
-	public static String fixesDigitLength(GlobalPropertyDao format, int scale, double value){
+	public static String fixesDigitLength(GlobalPropertyDataSource format, int scale, double value){
 		return format.currencyFormat(value, "#,##0.0000");
 	}
 	
@@ -561,7 +561,39 @@ public class Utils {
 	public static Locale getLocale(Context context){
 		return new Locale(getLangCode(context));
 	}
-	
+
+    /**
+     * @param context
+     * @return sync date time in iso8601 format
+     */
+    public static String getSyncDateTime(Context context){
+        String syncTime = "";
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        String time = sharedPref.getString(SettingsActivity.KEY_PREF_SYNC_TIME, "");
+        if(!TextUtils.isEmpty(time)){
+            try {
+                String isoFormat = "yyyy-MM-dd hh:mm:ss";
+                SimpleDateFormat sFormat = new SimpleDateFormat(isoFormat);
+                Calendar calendar = Calendar.getInstance();
+                long millisec = Long.parseLong(time);
+                calendar.setTimeInMillis(millisec);
+                syncTime = sFormat.format(calendar.getTime());
+            } catch (NumberFormatException e) {}
+        }
+        return syncTime;
+    }
+
+   /**
+     * @param context
+     * @return true if already sync
+     */
+    public static boolean isAlreadySync(Context context){
+        boolean isSync = false;
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        isSync = sharedPref.getBoolean(SettingsActivity.KEY_PREF_IS_SYNC, false);
+        return isSync;
+    }
+
 	public static void shutdown(){
 		Process chperm;
 		try {
@@ -625,8 +657,8 @@ public class Utils {
 	 * @param context
 	 */
 	public static void deleteOverSale(Context context){
-		SessionDao sessionDao = new SessionDao(context);
-		String firstDate = sessionDao.getFirstSessionDate();
+		SessionDataSource sessionDataSource = new SessionDataSource(context);
+		String firstDate = sessionDataSource.getFirstSessionDate();
 		if(!TextUtils.isEmpty(firstDate)){
 			int lastDay = getLastDayToClearSale(context);
 			Calendar cFirst = Calendar.getInstance();
@@ -640,7 +672,7 @@ public class Utils {
 			if(cLast.compareTo(cFirst) > 0){
                 Log.i(TAG, DateFormat.getTimeInstance().format(Calendar.getInstance().getTime())
                         + " begin clear over sale");
-				TransactionDao trans = new TransactionDao(context);
+				TransactionDataSource trans = new TransactionDataSource(context);
 				trans.deleteSale(firstDate, String.valueOf(cLast.getTimeInMillis()));
 			
 				DateFormat format = DateFormat.getDateInstance(DateFormat.LONG);
@@ -685,7 +717,7 @@ public class Utils {
 		}
 		return inFiles;
 	}
-	
+
 	public static LinearLayout.LayoutParams getLinHorParams(float weight){
 		return new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, weight);
 	}

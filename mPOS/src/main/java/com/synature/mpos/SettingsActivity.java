@@ -16,6 +16,9 @@ import java.util.List;
 
 public class SettingsActivity extends PreferenceActivity {
 
+    public static final String KEY_PREF_IS_SYNC = "is_sync";
+    public static final String KEY_PREF_SYNC_TIME = "sync_time";
+
 	public static final String KEY_PREF_SERVER_URL = "server_url";
 	public static final String KEY_PREF_CONN_TIME_OUT_LIST = "connection_time_out";
 	

@@ -157,14 +157,6 @@
             android:theme="@style/ActivityDialogTheme"
             android:windowSoftInputMode="stateAlwaysHidden" >
         </activity>
-        <activity
-            android:name="com.synature.mpos.DatabaseUpgradingActivity"
-            android:label="@string/title_activity_database_upgrading"
-            android:launchMode="singleTop"
-            android:screenOrientation="landscape"
-            android:theme="@style/ActivityDialogTheme"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" >
-        </activity>
 
         <receiver
             android:name="com.synature.mpos.BootUpReceiver"

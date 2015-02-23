@@ -3,11 +3,11 @@ package com.synature.mpos;
 import java.util.Calendar;
 import java.util.List;
 
-import com.synature.mpos.database.GlobalPropertyDao;
-import com.synature.mpos.database.PaymentDetailDao;
-import com.synature.mpos.database.SessionDao;
-import com.synature.mpos.database.TransactionDao;
-import com.synature.mpos.database.model.OrderTransaction;
+import com.synature.mpos.datasource.GlobalPropertyDataSource;
+import com.synature.mpos.datasource.PaymentDetailDataSource;
+import com.synature.mpos.datasource.SessionDataSource;
+import com.synature.mpos.datasource.TransactionDataSource;
+import com.synature.mpos.datasource.model.OrderTransaction;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -33,8 +33,8 @@ public class ReprintActivity extends Activity {
 	public static final int RECEIPT = 1;
 	public static final int WASTE = 2;
 	
-	private TransactionDao mTrans;
-	private GlobalPropertyDao mFormat;
+	private TransactionDataSource mTrans;
+	private GlobalPropertyDataSource mFormat;
 	private List<OrderTransaction> mTransLst;
 	private int mBillType = RECEIPT;
 	
@@ -59,15 +59,15 @@ public class ReprintActivity extends Activity {
 		
 		mLvTrans = (ListView) findViewById(R.id.listView1);
 
-		mTrans = new TransactionDao(this);
-		mFormat = new GlobalPropertyDao(this);
+		mTrans = new TransactionDataSource(this);
+		mFormat = new GlobalPropertyDataSource(this);
 
 		loadTransaction();
 		setupCustomView();
 	}
 	
 	private void loadTransaction(){
-		SessionDao sess = new SessionDao(this);
+		SessionDataSource sess = new SessionDataSource(this);
 		String sessionDate = sess.getLastSessionDate();
 		if(mBillType == RECEIPT)
 			mTransLst = mTrans.listSuccessTransaction(sessionDate);
@@ -79,7 +79,7 @@ public class ReprintActivity extends Activity {
 	}
 	
 	private void setupCustomView(){
-		PaymentDetailDao payment = new PaymentDetailDao(this);
+		PaymentDetailDataSource payment = new PaymentDetailDataSource(this);
 		if(payment.countPayTypeWaste() > 0){
 			View customView = getLayoutInflater().inflate(R.layout.spinner_view, null);
 			Spinner sp = (Spinner) customView.findViewById(R.id.spinner1);

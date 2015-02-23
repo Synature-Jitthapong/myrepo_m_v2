@@ -2,7 +2,7 @@ package com.synature.mpos;
 
 import java.util.List;
 
-import com.synature.mpos.database.model.OrderTransaction;
+import com.synature.mpos.datasource.model.OrderTransaction;
 
 import android.content.Context;
 import android.view.LayoutInflater;

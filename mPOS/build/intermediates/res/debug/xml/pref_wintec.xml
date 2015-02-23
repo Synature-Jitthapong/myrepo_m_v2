@@ -58,4 +58,4 @@
             android:title="@string/text_line2" android:defaultValue="mPOS" android:widgetLayout="@layout/dsp_test_layout"/>
     </PreferenceCategory>
 
-</PreferenceScreen><!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m/mPOS/src/main/res/xml/pref_wintec.xml -->
+</PreferenceScreen><!-- From: file:/home/j1tth4/Android%20studioProjects/myrepo_m_v2/mPOS/src/main/res/xml/pref_wintec.xml -->

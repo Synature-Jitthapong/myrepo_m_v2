@@ -1,6 +1,6 @@
 package com.synature.mpos;
 
-import com.synature.mpos.database.GlobalPropertyDao;
+import com.synature.mpos.datasource.GlobalPropertyDataSource;
 
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -18,7 +18,7 @@ public class FinishWasteDialogFragment extends DialogFragment implements OnClick
 
 	public static final String TAG = "FinishWasteDialogFragment";
 	
-	private GlobalPropertyDao mGlobal;
+	private GlobalPropertyDataSource mGlobal;
 	
 	private OnFinishWasteListener mListener;
 	
@@ -51,7 +51,7 @@ public class FinishWasteDialogFragment extends DialogFragment implements OnClick
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		mGlobal = new GlobalPropertyDao(getActivity());
+		mGlobal = new GlobalPropertyDataSource(getActivity());
 		
 		mPayTypeId = getArguments().getInt("payTypeId");
 		mDocTypeId = getArguments().getInt("docTypeId");

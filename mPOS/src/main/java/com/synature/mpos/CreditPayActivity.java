@@ -5,10 +5,10 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-import com.synature.mpos.database.BankDao;
-import com.synature.mpos.database.CreditCardDao;
-import com.synature.mpos.database.GlobalPropertyDao;
-import com.synature.mpos.database.PaymentDetailDao;
+import com.synature.mpos.datasource.BankDataSorce;
+import com.synature.mpos.datasource.CreditCardDataSource;
+import com.synature.mpos.datasource.GlobalPropertyDataSource;
+import com.synature.mpos.datasource.PaymentDetailDataSource;
 import com.synature.pos.BankName;
 import com.synature.pos.CreditCardType;
 import com.synature.util.CreditCardParser;
@@ -51,8 +51,8 @@ public class CreditPayActivity extends Activity implements TextWatcher{
 	 */
 	private Thread mMsrThread = null;
 	
-	private PaymentDetailDao mPayment;
-	private GlobalPropertyDao mGlobal;
+	private PaymentDetailDataSource mPayment;
+	private GlobalPropertyDataSource mGlobal;
 	
 	private List<BankName> mBankLst;
 	private List<CreditCardType> mCreditCardLst;
@@ -144,8 +144,8 @@ public class CreditPayActivity extends Activity implements TextWatcher{
 			
 		});
 		
-		mPayment = new PaymentDetailDao(CreditPayActivity.this);
-		mGlobal = new GlobalPropertyDao(CreditPayActivity.this);
+		mPayment = new PaymentDetailDataSource(CreditPayActivity.this);
+		mGlobal = new GlobalPropertyDataSource(CreditPayActivity.this);
 		
 		Intent intent = getIntent();
 		mTransactionId = intent.getIntExtra("transactionId", 0);
@@ -329,7 +329,7 @@ public class CreditPayActivity extends Activity implements TextWatcher{
 									+ mTxtCardNoSeq4.getText().toString();
 							try {
 								mPayment.addPaymentDetail(mTransactionId, mComputerId,
-										PaymentDetailDao.PAY_TYPE_CREDIT,
+										PaymentDetailDataSource.PAY_TYPE_CREDIT,
 										mTotalCreditPay, mTotalCreditPay >= mPaymentLeft ?
 												mPaymentLeft : mTotalCreditPay, cardNo, mExpMonth,
 										mExpYear, mBankId, mCardTypeId, "");
@@ -337,7 +337,7 @@ public class CreditPayActivity extends Activity implements TextWatcher{
 								// display pay type to customer display
 								if(Utils.isEnableWintecCustomerDisplay(CreditPayActivity.this)){
 									WintecCustomerDisplay dsp = new WintecCustomerDisplay(CreditPayActivity.this);
-									dsp.displayPayment(mPayment.getPaymentTypeName(PaymentDetailDao.PAY_TYPE_CREDIT), 
+									dsp.displayPayment(mPayment.getPaymentTypeName(PaymentDetailDataSource.PAY_TYPE_CREDIT),
 											mGlobal.currencyFormat(mTotalCreditPay));
 								}
 								
@@ -416,7 +416,7 @@ public class CreditPayActivity extends Activity implements TextWatcher{
 	}
 	
 	private void loadCreditCardType(){
-		CreditCardDao cd = new CreditCardDao(CreditPayActivity.this);
+		CreditCardDataSource cd = new CreditCardDataSource(CreditPayActivity.this);
 		mCreditCardLst = cd.listAllCreditCardType();
 		
 		CreditCardType cc = new CreditCardType();
@@ -447,7 +447,7 @@ public class CreditPayActivity extends Activity implements TextWatcher{
 	}
 	
 	private void loadBankName(){
-		BankDao bk = new BankDao(CreditPayActivity.this);
+		BankDataSorce bk = new BankDataSorce(CreditPayActivity.this);
 		mBankLst = bk.listAllBank();
 		
 		BankName b = new BankName();
